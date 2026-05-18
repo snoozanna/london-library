@@ -16,7 +16,7 @@ London Library 2
 :: Story Stylesheet [stylesheet]
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
 
 @import url("../styles/generics.css");
 @import url("../styles/styles.css");
@@ -111,9 +111,7 @@ setup.addPlaceholder = () => {
 
 :: header[nobr]
 <header class="standard">
- <div class="logo-wrapper">
-   <img src=""/>
-   </div>
+
    <div class="title-wrapper">
    <h1>London Library</h1>
    <h2>Arthur Conan Doyle Trail</h2>
@@ -397,7 +395,7 @@ setup.addPlaceholder = () => {
 
 
 <<timed 3s>>
-    <<append "#btnContainer">>
+    <<append "#msgMount">>
     <p>Look through the box. Write down the name of anyone you find?</p>
    <<include "pwScene6">>
     <</append>>
@@ -499,7 +497,9 @@ setup.addPlaceholder = () => {
 
 :: scene7-text [nobr]
 <p class="bold">Scene 7</p>
-
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
 <<timed 3s>>
   <p>Head down the stairs all the way to the basement</p>
 <p>That’s 9 flights of stairs down!</p>
@@ -667,7 +667,7 @@ setup.addPlaceholder = () => {
 
 
 <<timed 1s>>
-    <<append "#btnContainer">>
+    <<append "#msgMount">>
 <p>   Head to the Reading Room</p>
 <p>Walk through the Times Room up the TS Eliot staircase</p>
 <p>Go through the door and turn right and you’ll go find the Art Room.</p> 
@@ -697,7 +697,7 @@ setup.addPlaceholder = () => {
 
 
 <<timed 1s>>
-    <<append "#btnContainer">>
+    <<append "#msgMount">>
 <p>Look towards the clock.</p>
 <p>2.10 will point you towards where the book is.</p>
 /
