@@ -1,0 +1,868 @@
+:: StoryTitle
+London Library 2
+
+
+:: StoryData
+{
+	"ifid": "7E23718A-28F1-427B-9517-86CD595784EF",
+	"format": "SugarCube",
+	"format-version": "2.36.1",
+	"start": "landing",
+	"zoom": 1
+}
+
+
+
+:: Story Stylesheet [stylesheet]
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@import url("../styles/generics.css");
+@import url("../styles/styles.css");
+
+
+
+:: UserScript [script]
+
+    
+
+:: Story JavaScript [script]
+$('#ui-bar').remove();
+$(document.head).find('#style-ui-bar').remove();
+
+
+/* Google Tag */
+setup.JSLoaded = false;
+ var lockID = LoadScreen.lock();  // Lock loading screen
+ importScripts("https://www.googletagmanager.com/gtag/js?id=G-C6NP1M5W57")
+     .then(function() {
+
+         setup.JSLoaded = true;
+         window.dataLayer = window.dataLayer || [];
+         window.gtag = function (){ dataLayer.push(arguments); };
+         gtag('js', new Date());
+         gtag('config', 'G-C6NP1M5W57');
+          //  console.log("Sending to GA");
+         LoadScreen.unlock(lockID);  // Unlock loading screen
+     }).catch(function(error) {
+         console.log("Error: Could not load 'gtag.js'.");
+      LoadScreen.unlock(lockID);  // Unlock loading screen
+     }
+ );
+
+/* Track Passage Views using SugarCube's passage display events */
+$(document).on(':passagedisplay', function(ev) {
+    var passageName = ev.passage.title;
+    // console.log("sending", passageName, "to GA")
+    // Send passage view event to Google Analytics
+    if (setup.JSLoaded) {
+        gtag('event', 'Passage View', {
+            event_label: passageName,
+            event_category: 'Passage',
+        });
+    }
+});
+
+
+ $(document).on('click', 'a', function (ev) {
+ // Get the destination of the clicked link var passage 
+ var passage = $(this).attr('data-passage');
+ // Send the click event to Google Analytics
+    if (setup.JSLoaded && passage) {
+      // console.log("sending", passage, "click to GA")
+        gtag('event', 'Navigation', {
+            event_label: passage,
+            event_category: 'GuestClick'
+        });
+    }
+ });
+
+
+
+// add placeholder text to input 
+
+setup.addPlaceholder = () => {
+
+    const textbox = document.getElementById("textbox-codeword");
+    if (textbox) {
+        console.log("Found textbox:", textbox);
+        textbox.setAttribute("placeholder", "Type here");
+    }
+
+} 
+
+:: StoryInit
+<<cacheaudio "success" "../assets/sound/uploadcomplete.mp3">>
+<<cacheaudio "distort" "../assets/sound/Ffalabalam-distorted.mp3">>
+<<cacheaudio "notification" "../assets/sound/Notification.wav">>
+<<cacheaudio "ping" "../assets/sound/ping1.mp3">>
+<<cacheaudio "ticker" "../assets/sound/ticker.mp3">>
+
+<script>
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = "../assets/img/leadImage.png";
+    document.head.appendChild(link);
+</script>
+
+
+
+:: header[nobr]
+<header class="standard">
+ <div class="logo-wrapper">
+   <img src=""/>
+   </div>
+   <div class="title-wrapper">
+   <h1>London Library</h1>
+   <h2>Arthur Conan Doyle Trail</h2>
+   </div>
+</header>
+
+
+
+
+:: footer[nobr]
+
+<footer>
+    <<link [img[../assets/img/back-black.png]]>>
+        <<goto $prevpass>>
+    <</link>>
+
+   
+</footer>
+
+:: navbuttons[nobr]
+
+<div class="footer-icons">
+<<link [img[../assets/img/back-sharp.png][$prevpass]]>>
+    <</link>>
+    <<link [img[../assets/img/replay-sharp.png][$pass]]>>
+    <</link>>
+    
+<div><div/>
+
+</div>
+
+:: navbuttonsb[nobr]
+
+<div class="footer-icons">
+<<link [img[../assets/img/back-sharp-b.png][$prevpass]]>>
+    <</link>>
+    <<link [img[../assets/img/replay-sharp-b.png][$pass]]>>
+    <</link>>
+    
+<div id="processingMount"></div>
+
+</div>
+
+:: navbuttonstext[nobr]
+
+<div class="nav-btn-container btn-container">
+ <<button "Back">>
+    <<goto $prevpass>>
+<</button>>
+ <<button "Replay">>
+    <<goto $pass>>
+<</button>>
+   
+</div>
+
+
+
+
+
+
+:: footeroptionappears[nobr]
+<<set $showWallet to false>>
+<footer class="grid-item footer">
+  <<link [img[../assets/img/back-black.png]]>>
+        <<goto $prevpass>>
+    <</link>>
+  /* <<link "W">>
+        <<set $showWallet to true>>
+        <<goto "wallet">>
+        <</link>> */
+           /* <<link [img[../assets/img/for-black.png]]>>
+        <<goto $nextpass>>
+    <</link>> */
+    <div id="nextButtonContainer">
+     </div>
+</footer>
+
+
+
+:: headerlanding[nobr]
+<header class="standard scrollable">
+ <div class="logo-wrapper">
+   /* <img src=""/> */
+   </div>
+</header>
+
+
+:: landing [nobr] 
+<<set $prevpass to "landing">>
+<<set $pass to "landing">>
+<<set $nextpass to "scene5">>
+<<set $userchoices to {
+    language: null,
+    audioOn: true
+}>>
+<<set $btnAppearTime to "1s">>
+<<addclass "body" "maroon">>
+
+<<include "header">>
+<main>
+<<include "sealButton">>
+   
+</main>
+
+/* <<include "wallet">> */
+
+:: _templateIntro[nobr]
+<<addclass "body" "maroon">>
+<<include "header">>
+<main>
+    <div id="msgMount">
+        <<if $pass>>
+             <<set $uniqueContent to $pass+"-text">>
+            <<include $uniqueContent>>
+            <div class="btn-container" id="btnContainer">
+            </div>
+        <<else>>
+            No content provided.
+        <</if>>
+        </div>
+  
+</main> 
+<<include "navbuttons">>
+
+:: _templateStory [nobr]
+<<include "header">>
+<main>
+
+    <div id="msgMount"> </div>
+        <<if $pass>>
+      
+             <<set $uniqueContent to $pass+"-text">>
+            <<silently>>
+            <<timed 0.1s>>
+            <<append "#msgMount">>
+              <<include $uniqueContent>>
+              <</append>>
+              <</timed>>
+            <</silently>>
+               <div class="btn-container" id="btnContainer">
+            </div>
+        <<else>>
+            No content provided.
+        <</if>>
+
+</main>
+<<include "navbuttonsb">>
+
+:: _templateSeal [nobr]
+<<include "header">>
+<main>
+ <div class="btn-container" id="btnContainer">
+</div>
+</main>
+<<timed $btnAppearTime>>
+    <<append "#btnContainer">>
+   <<include "sealButton">>
+        /* <<include "navbuttons">> */
+    <</append>>
+<</timed>>
+<<include "navbuttonsb">>
+
+:: sealButton [nobr]
+    <<button "SEAL">>
+      <<goto $nextpass>>
+        <</button>>
+
+
+
+:: _templateMoveOn [nobr]
+<<include "header">>
+<main>
+ <div class="btn-container" id="btnContainer">
+</div>
+</main>
+<<timed $btnAppearTime>>
+    <<append "#btnContainer">>
+    <<button "MOVE ON">>
+            <<goto $nextpass>>
+        <</button>>
+        /* <<include "navbuttons">> */
+    <</append>>
+<</timed>>
+<<include "navbuttonsb">>
+
+
+
+:: scene5 [nobr]
+<<set $prevpass to "landing">>
+<<set $pass to "scene5">>
+<<set $nextpass to "scene5a">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene5-text [nobr]
+<p class="bold">Scene 5 </p>
+
+<<timed 3s>>
+  <p> Head back out to the green carpeted staircase and walk up the stairs to Level 2 – you’ll go up 5 flights of stairs. When there wait on the landing for the next instruction.</p>
+
+    <</timed>>
+
+<<timed 5s>>
+    <<append "#btnContainer">>
+    <<button "Next">>
+            <<goto $nextpass>>
+        <</button>>
+   /* <<include "navbuttons">> */
+    <</append>>
+    
+<</timed>>
+
+:: scene5a [nobr]
+<<set $prevpass to "scene5">>
+<<set $pass to "scene5a">>
+<<set $nextpass to "scene5a-moveOn">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene5a-text [nobr]
+<p>I need you all to check in the Stacks for the manuscript.</p>
+<p>Find where Arthur Conan Doyle’s books are and write down the name of his 1907 ‘Through the Magic …’ and show it to your handler.  </p>
+
+<<include "pwScene5a">>
+
+
+
+:: pwScene5a [nobr]
+<<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* Correct */
+    <<if $codeword is "DOOR">>
+      <<replace "#coderesult">><span>Correct!</span>
+      <</replace>>
+     <<timed 2s>>
+      <<replace "#msgMount">>
+        <p>Sherlock Holmes handwritten image</p>
+        <<include "sealButton">>
+      <</replace>>
+          <</timed>>
+    <<elseif $codeword isnot "">>
+      /* Incorrect (non-empty) */
+      <<replace "#coderesult">><span>Try again.</span><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</button>>
+  </div>
+</div>
+<br/>
+<div id="coderesult"></div>
+
+<<done>><<set $e to setup.addPlaceholder()>><</done>>
+
+:: scene5a-moveOn [nobr]
+<<set $prevpass to "scene5a">>
+<<set $pass to "scene5a-moveOn">>
+<<set $nextpass to "scene6">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateMoveOn">>
+
+:: scene6 [nobr]
+<<set $prevpass to "scene5a-moveOn">>
+<<set $pass to "scene6">>
+<<set $nextpass to "scene6a">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene6-text [nobr]
+<p class="bold">Scene 6 </p>
+
+
+<<timed 3s>>
+    <<append "#btnContainer">>
+    <p>Look through the box. Write down the name of anyone you find?</p>
+   <<include "pwScene6">>
+    <</append>>
+    
+<</timed>>
+
+:: pwScene6 [nobr]
+<<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* Correct */
+    <<if $codeword is "MARY RIOT">>
+      <<replace "#coderesult">><span>Correct!</span>
+      <</replace>>
+     
+      <<replace "#btnContainer">>
+       <<timed 3s>><<goto $nextpass>><</timed>>
+      <</replace>>
+    <<elseif $codeword isnot "">>
+      /* Incorrect (non-empty) */
+      <<replace "#coderesult">><span>Try again.</span><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</button>>
+  </div>
+</div>
+<br/>
+<div id="coderesult"></div>
+
+<<done>><<set $e to setup.addPlaceholder()>><</done>>
+
+
+:: scene6a [nobr]
+<<set $prevpass to "scene6">>
+<<set $pass to "scene6a">>
+<<set $nextpass to "scene6b">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene6a-text [nobr]
+
+
+<<timed 1s>>
+<p> Head to the central stack staircase.</p>
+<p>It is not the same staircase you came up.</p>
+<p>If you turn right out of the nook it is straight ahead.</p>
+<p>When there click </p>
+
+<</timed>>
+
+<<timed 2s>>
+    <<append "#btnContainer">>
+    <<button "Next">>
+            <<goto $nextpass>>
+        <</button>>
+    <</append>>
+    
+<</timed>>
+
+:: scene6b [nobr]
+<<set $prevpass to "scene6a">>
+<<set $pass to "scene6b">>
+<<set $nextpass to "scene6b-moveOn">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+
+<<include "header">>
+<main>
+<<timed 1s>>
+<p>Mary Riot Image</p>
+<<include "sealButton">>
+<</timed>>
+</main>
+<<include "navbuttonsb">>
+
+:: scene6b-moveOn [nobr]
+<<set $prevpass to "scene6b">>
+<<set $pass to "scene6b-moveOn">>
+<<set $nextpass to "scene7">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateMoveOn">>
+
+
+:: scene7 [nobr]
+<<set $prevpass to "scene6-moveOn">>
+<<set $pass to "scene7">>
+<<set $nextpass to "scene7a">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene7-text [nobr]
+<p class="bold">Scene 7</p>
+
+<<timed 3s>>
+  <p>Head down the stairs all the way to the basement</p>
+<p>That’s 9 flights of stairs down!</p>
+<p>When there, click </p>
+    <</timed>>
+
+<<timed 5s>>
+    <<append "#btnContainer">>
+    <<button "MOVE ON">>
+            <<goto $nextpass>>
+        <</button>>
+    <</append>>
+<</timed>>
+
+:: scene7a [nobr]
+<<set $prevpass to "scene7">>
+<<set $pass to "scene7a">>
+<<set $nextpass to "scene8">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene7a-text [nobr]
+
+<<timed 1s>>
+<p>At the head of Goose turn right to find the Times room</p>
+<p>Stand around the red maroon table.</p>
+<p>When there, click </p>
+
+    <</timed>>
+
+<<timed 3s>>
+    <<append "#btnContainer">>
+    <<button "MOVE ON">>
+            <<goto $nextpass>>
+        <</button>>
+    <</append>>
+<</timed>>
+
+
+:: scene8 [nobr]
+<<set $prevpass to "scene7a">>
+<<set $pass to "scene8">>
+<<set $nextpass to "scene8-moveOn">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene8-text [nobr]
+
+<<timed 1s>>
+<p>MARY RIOT</p>
+<<include "pwScene8">>
+
+    <</timed>>
+
+
+:: pwScene8 [nobr]
+<<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* Correct */
+    <<if $codeword is "MORIARTY">>
+      <<replace "#coderesult">><span>Correct!</span>
+      <</replace>>
+     <<timed 2s>>
+      <<replace "#msgMount">>
+        <p>Moriarty Image</p>
+        <<include "sealButton">>
+      <</replace>>
+      <</timed>>
+    <<elseif $codeword isnot "">>
+      /* Incorrect (non-empty) */
+      <<replace "#coderesult">><span>Try again.</span><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</button>>
+  </div>
+</div>
+<br/>
+<div id="coderesult"></div>
+
+
+:: scene8-moveOn [nobr]
+<<set $prevpass to "scene8">>
+<<set $pass to "scene8-moveOn">>
+<<set $nextpass to "scene9">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateMoveOn">>
+
+
+:: scene9 [nobr]
+<<set $prevpass to "scene8-moveOn">>
+<<set $pass to "scene9">>
+<<set $nextpass to "scene9-moveOn">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene9-text [nobr]
+
+<<timed 1s>>
+<<include "pwScene9">>
+    
+<</timed>>
+
+:: pwScene9 [nobr]
+<<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* Correct */
+    <<if $codeword is "READING ROOM 2.10" or $codeword is "THE DYNAMICS OF AN ASTEROID - READING ROOM 2.10">>
+      <<replace "#coderesult">><span>Correct!</span>
+      <</replace>>
+     <<timed 2s>>
+      <<replace "#msgMount">>
+        <p>Reading Room 2.10 Image</p>
+        <<include "sealButton">>
+      <</replace>>
+      <</timed>>
+    <<elseif $codeword isnot "">>
+      /* Incorrect (non-empty) */
+      <<replace "#coderesult">><span>Try again.</span><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</button>>
+  </div>
+</div>
+<br/>
+<div id="coderesult"></div>
+
+
+:: scene9-moveOn [nobr]
+<<set $prevpass to "scene9">>
+<<set $pass to "scene9-moveOn">>
+<<set $nextpass to "scene10">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateMoveOn">>
+
+
+:: scene10 [nobr]
+<<set $prevpass to "scene9-moveOn">>
+<<set $pass to "scene10">>
+<<set $nextpass to "scene10a">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene10-text [nobr]
+<p class="bold">Scene 10</p>
+
+
+<<timed 1s>>
+    <<append "#btnContainer">>
+<p>   Head to the Reading Room</p>
+<p>Walk through the Times Room up the TS Eliot staircase</p>
+<p>Go through the door and turn right and you’ll go find the Art Room.</p> 
+<p>Head through the Art Room and turn left up the staircase and let me know when you are outside the reading room. </p>
+<p>When there click</p>
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    <<append "#btnContainer">>
+    <<button "MOVE ON">>
+            <<goto $nextpass>>
+        <</button>>
+    <</append>>
+<</timed>>
+
+
+:: scene10a [nobr]
+<<set $prevpass to "scene10">>
+<<set $pass to "scene10a">>
+<<set $nextpass to "scene11">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene10a-text [nobr]
+
+
+<<timed 1s>>
+    <<append "#btnContainer">>
+<p>Look towards the clock.</p>
+<p>2.10 will point you towards where the book is.</p>
+/
+<p>There might be something inside it.</p>
+<p>You might need to go up the staircase.</p>
+/
+<p>Where does 2.10 point towards?</p>
+/
+<p>When you’ve found the package head back out of the Reading Room and write down anything written down on the package </p>
+
+    <</append>>
+<</timed>>
+
+<<timed 3s>>
+    <<append "#btnContainer">>
+<<include "pwScene10a">>
+    <</append>>
+<</timed>>
+
+
+:: pwScene10a [nobr]
+<<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* Correct */
+    <<if $codeword is "MADAME DE TENCIN">>
+      <<replace "#coderesult">><span>Correct!</span>
+      <</replace>>
+     
+      <<replace "#btnContainer">>
+        <p>Madame De Tencin Image</p>
+        <<include "sealButton">>
+      <</replace>>
+    <<elseif $codeword isnot "">>
+      /* Incorrect (non-empty) */
+      <<replace "#coderesult">><span>Try again.</span><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</button>>
+  </div>
+</div>
+<br/>
+<div id="coderesult"></div>
+
+
+:: scene11 [nobr]
+<<set $prevpass to "pwScene10a">>
+<<set $pass to "scene11">>
+<<set $nextpass to "scene11a">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene11-text [nobr]
+<p class="bold">Scene 11 </p>
+
+
+<<timed 1s>>
+
+   <<include "pwScene11">>
+
+    
+<</timed>>
+
+
+:: pwScene11 [nobr]
+<<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* Correct */
+    <<if $codeword is "INANE">>
+      <<replace "#coderesult">><span>Correct!</span>
+      <</replace>>
+     
+   <<timed 3s>><<goto $nextpass>><</timed>>
+    <<elseif $codeword isnot "">>
+      /* Incorrect (non-empty) */
+      <<replace "#coderesult">><span>Try again.</span><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</button>>
+  </div>
+</div>
+<br/>
+<div id="coderesult"></div>
+
+
+:: scene11a [nobr]
+<<set $prevpass to "pwScene11">>
+<<set $pass to "scene11a">>
+<<set $nextpass to "scene11-moveOn">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene11a-text [nobr]
+
+<p>It’s an anagram!</p>
+<p>Rejig it to find the word.</p>
+
+<<timed 1s>>
+   <<include "pwScene11a">>
+<</timed>>
+
+
+:: pwScene11a [nobr]
+<<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* Correct */
+    <<if $codeword is "ANNIE">>
+      <<replace "#coderesult">><span>Correct!</span>
+      <</replace>>
+     <<timed 2s>>
+  <<replace "#msgMount">>
+        <p>ANNIE Image</p>
+        <<include "sealButton">>
+      <</replace>>
+      <</timed>>
+    <<elseif $codeword isnot "">>
+      /* Incorrect (non-empty) */
+      <<replace "#coderesult">><span>Try again.</span><</replace>>
+      <<timed 1.5s>><<replace "#coderesult">><</replace>><</timed>>
+    <</if>>
+  <</button>>
+  </div>
+</div>
+<br/>
+<div id="coderesult"></div>
+
+
+:: scene11-moveOn [nobr]
+<<set $prevpass to "scene11a">>
+<<set $pass to "scene11-moveO">>
+<<set $nextpass to "scene12">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateMoveOn">>
+
+
+:: scene12 [nobr]
+<<set $prevpass to "scene11-moveOn">>
+<<set $pass to "scene12">>
+<<set $nextpass to "">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene12-text [nobr]
+<p class="bold">Scene 12 </p>
