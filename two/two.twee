@@ -505,6 +505,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <main class="moveOn">
 <h1>Mary Riot</h1>
+
  <div class="btn-container" id="btnContainer">
  <<include "sealButton">>
 </div>
@@ -596,7 +597,7 @@ setup.addPlaceholder = () => {
     <br/>
     <br/>
 <h1 class="center decorative">MARY RIOT</h1>
-<br/>
+<br/><br/><br/>
 <<include "pwScene8">>
     <</timed>>
 

@@ -383,7 +383,7 @@ setup.addPlaceholder = () => {
 
 
 :: scene1 [nobr]
-<<set $prevpass to "2_welcome">>
+<<set $prevpass to "intro2">>
 <<set $pass to "scene1">>
 <<set $nextpass to "scene1-seal">>
 <<audio ":all" "stop">>
