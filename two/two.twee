@@ -164,10 +164,6 @@ setup.addPlaceholder = () => {
     <</link>>
     <<link [img[../assets/img/replay-sharp-b.png][$pass]]>>
     <</link>>
-
-
-    
-
 </div>
 
 :: navbuttonstext[nobr]

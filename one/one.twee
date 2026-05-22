@@ -154,6 +154,15 @@ setup.addPlaceholder = () => {
 
 </div>
 
+:: navbuttonsend[nobr]
+
+<div class="footer-icons">
+<<link [img[../assets/img/back-sharp-b.png][$prevpass]]>>
+    <</link>>
+    <<link [img[../assets/img/replay-sharp-b.png][$pass]]>>
+    <</link>>
+</div>
+
 :: navbuttonstext[nobr]
 
 <div class="nav-btn-container btn-container">
@@ -590,13 +599,15 @@ setup.addPlaceholder = () => {
 :: scene4 [nobr]
 <<set $prevpass to "scene3-moveOn">>
 <<set $pass to "scene4">>
-<<set $nextpass to "scene4a">>
+<<set $nextpass to "">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
-<<include "_templateStory">>
+<<include "scene4-text">>
 
 :: scene4-text [nobr]
-
+<main>
+<div id="audio"></div>
+    <div id="msgMount"> </div>
 <<timed 0.1s>>
     <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto4.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
@@ -615,7 +626,8 @@ setup.addPlaceholder = () => {
 <p>When there, find ‘Man as a Geological Agent’ – it might be closer to the ‘Gold’ Section. When you find it, put your notepad on the book.</p>
     <</replace>>
 <</timed>>
-
+</main>
+<<include "navbuttonsend">>
 
 
 
