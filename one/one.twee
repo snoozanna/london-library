@@ -461,7 +461,6 @@ setup.addPlaceholder = () => {
  <<include "sealButton">>
 </div>
 </main>
-<<include "navbuttonsb">>
 
 :: scene1-moveOn [nobr]
 <<set $prevpass to "scene1-seal">>
