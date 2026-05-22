@@ -106,7 +106,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 	</div>
 	<!-- UUID://3727506D-288C-46BD-A866-3D0FCB0106F7// --><tw-storydata name="London Library 1" startnode="9" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="3727506D-288C-46BD-A866-3D0FCB0106F7" zoom="1" format="SugarCube" format-version="2.37.3" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 @import url("../styles/generics.css");
 @import url("../styles/styles.css");</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "UserScript" */
@@ -211,8 +211,8 @@ setup.addPlaceholder = () => {
     &lt;&lt;/link&gt;&gt;
     &lt;&lt;link [img[../assets/img/replay-sharp-b.png][$pass]]&gt;&gt;
     &lt;&lt;/link&gt;&gt;
-    
-&lt;div id=&quot;processingMount&quot;&gt;&lt;/div&gt;
+    &lt;&lt;link [img[../assets/img/for-sharp-b.png][$nextpass]]&gt;&gt;
+    &lt;&lt;/link&gt;&gt;
 
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="navbuttonstext" tags="nobr" position="725,100" size="100,100">&lt;div class=&quot;nav-btn-container btn-container&quot;&gt;
  &lt;&lt;button &quot;Back&quot;&gt;&gt;
@@ -250,7 +250,6 @@ setup.addPlaceholder = () => {
 &lt;&lt;set $btnAppearTime to &quot;1s&quot;&gt;&gt;
 &lt;&lt;addclass &quot;body&quot; &quot;maroon&quot;&gt;&gt;
 
-&lt;&lt;include &quot;headerlanding&quot;&gt;&gt;
 /* &lt;div class=&quot;hide warning&quot;&gt;&lt;h1&gt;Please view this on a phone&lt;/h1&gt;&lt;/div&gt; */
 &lt;main class=&quot;landing flex-col-cen&quot;&gt;
   &lt;h1&gt;London Library&lt;/h1&gt;
@@ -261,9 +260,9 @@ setup.addPlaceholder = () => {
    
 &lt;/main&gt;
 
-/* &lt;&lt;include &quot;wallet&quot;&gt;&gt; */</tw-passagedata><tw-passagedata pid="10" name="_templateIntro" tags="nobr" position="1225,100" size="100,100">&lt;&lt;addclass &quot;body&quot; &quot;maroon&quot;&gt;&gt;
-&lt;&lt;include &quot;header&quot;&gt;&gt;
+/* &lt;&lt;include &quot;wallet&quot;&gt;&gt; */</tw-passagedata><tw-passagedata pid="10" name="_templateIntro" tags="nobr" position="1225,100" size="100,100">&lt;&lt;addclass &quot;body&quot; &quot;intro&quot;&gt;&gt;
 &lt;main&gt;
+&lt;div id=&quot;audio&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;msgMount&quot;&gt;
         &lt;&lt;if $pass&gt;&gt;
              &lt;&lt;set $uniqueContent to $pass+&quot;-text&quot;&gt;&gt;
@@ -276,9 +275,8 @@ setup.addPlaceholder = () => {
         &lt;/div&gt;
   
 &lt;/main&gt; 
-&lt;&lt;include &quot;navbuttons&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="_templateStory" tags="nobr" position="100,225" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
-&lt;main&gt;
-
+&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="_templateStory" tags="nobr" position="100,225" size="100,100">&lt;main&gt;
+&lt;div id=&quot;audio&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;msgMount&quot;&gt; &lt;/div&gt;
         &lt;&lt;if $pass&gt;&gt;
       
@@ -297,20 +295,12 @@ setup.addPlaceholder = () => {
         &lt;&lt;/if&gt;&gt;
 
 &lt;/main&gt;
-&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="_templateSeal" tags="nobr" position="225,225" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
-&lt;main&gt;
- &lt;div class=&quot;btn-container&quot; id=&quot;btnContainer&quot;&gt;
-&lt;/div&gt;
-&lt;/main&gt;
-&lt;&lt;timed $btnAppearTime&gt;&gt;
-    &lt;&lt;append &quot;#btnContainer&quot;&gt;&gt;
-   &lt;&lt;include &quot;sealButton&quot;&gt;&gt;
-        /* &lt;&lt;include &quot;navbuttons&quot;&gt;&gt; */
-    &lt;&lt;/append&gt;&gt;
-&lt;&lt;/timed&gt;&gt;
-&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="sealButton" tags="nobr" position="350,225" size="100,100">&lt;&lt;button &quot;SEAL&quot;&gt;&gt;
+&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="sealButton" tags="nobr" position="225,225" size="100,100">&lt;div class=&quot;sealBtn-container&quot;&gt;
+    &lt;&lt;button [img[&quot;../assets/img/LL_wax_seal.png&quot;]]&gt;&gt;
       &lt;&lt;goto $nextpass&gt;&gt;
-        &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="_templateMoveOn" tags="nobr" position="475,225" size="100,100">&lt;&lt;include &quot;header&quot;&gt;&gt;
+        &lt;&lt;/button&gt;&gt;
+        &lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="_templateMoveOn" tags="nobr" position="350,225" size="100,100">/* &lt;&lt;include &quot;header&quot;&gt;&gt; */
+&lt;&lt;addclass &quot;body&quot; &quot;moveOn&quot;&gt;&gt;
 &lt;main&gt;
  &lt;div class=&quot;btn-container&quot; id=&quot;btnContainer&quot;&gt;
 &lt;/div&gt;
@@ -323,64 +313,92 @@ setup.addPlaceholder = () => {
         /* &lt;&lt;include &quot;navbuttons&quot;&gt;&gt; */
     &lt;&lt;/append&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
-&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="intro1" tags="nobr" position="600,225" size="100,100">&lt;&lt;set $prevpass to &quot;landing&quot;&gt;&gt;
+&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="intro1" tags="nobr" position="475,225" size="100,100">&lt;&lt;set $prevpass to &quot;landing&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;intro1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;introMoveOn&quot;&gt;&gt;
 
-&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="intro1-text" tags="nobr" position="725,225" size="100,100">&lt;p&gt;Welcome to the Arthur Conan Doyle Trail. &lt;/p&gt;
+&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="intro1-text" tags="nobr" position="600,225" size="100,100">&lt;&lt;timed 0.2s&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;
+
+&lt;&lt;timed 0.1s&gt;&gt;
+    &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
+        &lt;p&gt;Welcome to the Arthur Conan Doyle Trail. &lt;/p&gt;
+    &lt;&lt;/replace&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;timed 2s&gt;&gt;
+    &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
 &lt;p&gt;You will be exploring the library with a group - do stay with them. &lt;/p&gt;
-/
-&lt;p&gt;You should be able to hear my voice - if not you should put the volume up. &lt;/p&gt;
-/
+    &lt;&lt;/append&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;timed 4s&gt;&gt;
+    &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
+&lt;p&gt;You should be able to hear my voice - if not you should put the volume up. &lt;/p&gt;  
+    &lt;&lt;/append&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;timed 6s&gt;&gt;
+    &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
 &lt;p&gt;You will be asked to find information in the Library. &lt;/p&gt;
 &lt;p&gt;We are only able to go on this trail if we are quiet throughout the Library.&lt;/p&gt;
-/
-&lt;p&gt;There will be points that you need to wait for confirmation from your group leader to move on – as we are playing through this as a group and you might need to wait for others to catch up. &lt;/p&gt;
-/
-&lt;p&gt;Your screen will show an image with a London Library seal on it – when you see this wait for the thumbs up from &lt;/p&gt;
-/
-&lt;p&gt;Let’s try that now. &lt;/p&gt;
-
-
-
-
-
-&lt;&lt;timed $btnAppearTime&gt;&gt;
-    &lt;&lt;append &quot;#btnContainer&quot;&gt;&gt;
-    &lt;&lt;button &quot;SEAL&quot;&gt;&gt;
-            &lt;&lt;goto $nextpass&gt;&gt;
-        &lt;&lt;/button&gt;&gt;
-        /* &lt;&lt;include &quot;navbuttons&quot;&gt;&gt; */
     &lt;&lt;/append&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="introMoveOn" tags="nobr" position="850,225" size="100,100">&lt;&lt;set $prevpass to &quot;intro1&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;timed 8s&gt;&gt;
+    &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
+&lt;p&gt;There will be points that you need to wait for confirmation from your group leader to move on – as we are playing through this as a group and you might need to wait for others to catch up. &lt;/p&gt;
+    &lt;&lt;/append&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;timed 10s&gt;&gt;
+    &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
+&lt;p&gt;Your screen will show an image with a London Library seal on it – when you see this wait for the thumbs up from &lt;/p&gt;
+    &lt;&lt;/append&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;timed 12s&gt;&gt;
+    &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
+&lt;p&gt;Let’s try that now. &lt;/p&gt;
+    &lt;&lt;/append&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+
+&lt;&lt;timed 12s&gt;&gt;
+    &lt;&lt;append &quot;#msgMount&quot;&gt;&gt;
+
+    &lt;&lt;include &quot;sealButton&quot;&gt;&gt;
+
+    &lt;&lt;/append&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="introMoveOn" tags="nobr" position="725,225" size="100,100">&lt;&lt;set $prevpass to &quot;intro1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;introMoveOn&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;intro2&quot;&gt;&gt;
-&lt;&lt;include &quot;_templateMoveOn&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="intro2" tags="nobr" position="975,225" size="100,100">&lt;&lt;set $prevpass to &quot;introMoveOn&quot;&gt;&gt;
+&lt;&lt;include &quot;_templateMoveOn&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="intro2" tags="nobr" position="850,225" size="100,100">&lt;&lt;set $prevpass to &quot;introMoveOn&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;intro2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene1&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;../assets/voiceover/strongertogethervo_0_3.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="intro2-text" tags="nobr" position="1100,225" size="100,100">&lt;p&gt;Great, let’s begin in the Issue Hall. &lt;/p&gt;
+&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="intro2-text" tags="nobr" position="975,225" size="100,100">&lt;p&gt;Great, let’s begin in the Issue Hall. &lt;/p&gt;
 
 &lt;&lt;timed $btnAppearTime&gt;&gt;
     &lt;&lt;append &quot;#btnContainer&quot;&gt;&gt;
-    &lt;&lt;button &quot;SEAL&quot;&gt;&gt;
-            &lt;&lt;goto $nextpass&gt;&gt;
-        &lt;&lt;/button&gt;&gt;
+  &lt;&lt;include &quot;sealButton&quot;&gt;&gt;
         /* &lt;&lt;include &quot;navbuttons&quot;&gt;&gt; */
     &lt;&lt;/append&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="scene1" tags="nobr" position="1225,225" size="100,100">&lt;&lt;set $prevpass to &quot;2_welcome&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="scene1" tags="nobr" position="1100,225" size="100,100">&lt;&lt;set $prevpass to &quot;2_welcome&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene1&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene1-seal&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
-&lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="scene1-text" tags="nobr" position="100,350" size="100,100">&lt;p class=&quot;bold&quot;&gt;Scene 1 &lt;/p&gt;
 
-&lt;&lt;timed 3s&gt;&gt;
-&lt;p class=&quot;bold&quot;&gt;What is the name of the city on the dial of the library clock? &lt;/p&gt;
-&lt;&lt;include &quot;pwScene1&quot;&gt;&gt;
-    
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="pwScene1" tags="nobr" position="225,350" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="scene1-text" tags="nobr" position="1225,225" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto1.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;
+&lt;p class=&quot;bold&quot;&gt;Scene 1 &lt;/p&gt;
+&lt;div id=&quot;msgMount&quot;&gt;
+&lt;div class=&quot;inline-img-wrapper&quot;&gt;
+&lt;img src=&quot;../assets/img/audio.png&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;timed 98s&gt;&gt;
+    &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
+    &lt;p class=&quot;bold&quot;&gt;What is the name of the city on the dial of the library clock? &lt;/p&gt;
+    &lt;&lt;include &quot;pwScene1&quot;&gt;&gt;
+    &lt;&lt;/replace&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="pwScene1" tags="nobr" position="100,350" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
 
 &lt;div class=&quot;codeinput&quot;&gt;
   &lt;&lt;textbox &quot;$codeword&quot; &quot;&quot;&gt;&gt;
@@ -406,38 +424,51 @@ setup.addPlaceholder = () => {
 &lt;br/&gt;
 &lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;
 
-&lt;&lt;done&gt;&gt;&lt;&lt;set $e to setup.addPlaceholder()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="scene1-seal" tags="nobr" position="350,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene1&quot;&gt;&gt;
+&lt;&lt;done&gt;&gt;&lt;&lt;set $e to setup.addPlaceholder()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="scene1-seal" tags="nobr" position="225,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene1-seal&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene1-moveOn&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
+&lt;&lt;addclass &quot;body&quot; &quot;moveOn&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateSeal&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="scene1-moveOn" tags="nobr" position="475,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene1-seal&quot;&gt;&gt;
+&lt;main class=&quot;moveOn&quot;&gt;
+&lt;h1&gt;London&lt;/h1&gt;
+ &lt;div class=&quot;btn-container&quot; id=&quot;btnContainer&quot;&gt;
+ &lt;&lt;include &quot;sealButton&quot;&gt;&gt;
+&lt;/div&gt;
+&lt;/main&gt;
+&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="scene1-moveOn" tags="nobr" position="350,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene1-seal&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene1-moveOn&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene2&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateMoveOn&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="scene2" tags="nobr" position="600,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene1-moveOn&quot;&gt;&gt;
+&lt;&lt;include &quot;_templateMoveOn&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="scene2" tags="nobr" position="475,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene1-moveOn&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene2&quot;&gt;&gt;
-&lt;&lt;set $nextpass to &quot;scene3&quot;&gt;&gt;
+&lt;&lt;set $nextpass to &quot;scene3-seal&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="scene2-text" tags="nobr" position="725,350" size="100,100">&lt;p class=&quot;bold&quot;&gt;Scene 2 &lt;/p&gt;
-
-&lt;&lt;timed 3s&gt;&gt;
-    &lt;p&gt;Head up the stairs with the green carpet – walk up to flights of stairs – on the right hand side until you get to the entrance to the Reading Room.&lt;/p&gt;
-&lt;p&gt;When there click your handler will give you permission to press below&lt;/p&gt;
-
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="scene2-text" tags="nobr" position="600,350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto2.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
-
+&lt;p class=&quot;bold&quot;&gt;Scene 2 &lt;/p&gt;
+&lt;div id=&quot;msgMount&quot;&gt;
+&lt;div class=&quot;inline-img-wrapper&quot;&gt;
+&lt;img src=&quot;../assets/img/audio.png&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;timed 54s&gt;&gt;
+    &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
+    &lt;p&gt;Head up the stairs with the green carpet – walk up to flights of stairs – on the right hand side until you get to the entrance to the Reading Room.&lt;/p&gt;
+&lt;p&gt;When there click your handler will give you permission to press below.&lt;/p&gt;
 &lt;&lt;timed 5s&gt;&gt;
     &lt;&lt;append &quot;#btnContainer&quot;&gt;&gt;
     &lt;&lt;button &quot;Next&quot;&gt;&gt;
             &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
-   /* &lt;&lt;include &quot;navbuttons&quot;&gt;&gt; */
     &lt;&lt;/append&gt;&gt;
     
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="pwScene3" tags="nobr" position="850,350" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
+&lt;&lt;/timed&gt;&gt;
+    &lt;&lt;/replace&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="pwScene3" tags="nobr" position="725,350" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
 
 &lt;div class=&quot;codeinput&quot;&gt;
   &lt;&lt;textbox &quot;$codeword&quot; &quot;&quot;&gt;&gt;
@@ -451,10 +482,10 @@ setup.addPlaceholder = () => {
       &lt;&lt;replace &quot;#coderesult&quot;&gt;&gt;&lt;span&gt;Correct!&lt;/span&gt;
       &lt;&lt;/replace&gt;&gt;
      
-       &lt;&lt;replace &quot;#btnContainer&quot;&gt;&gt;
-        &lt;p&gt;Sherlock Holmes handwritten image&lt;/p&gt;
-        &lt;&lt;include &quot;sealButton&quot;&gt;&gt;
-      &lt;&lt;/replace&gt;&gt;
+       &lt;&lt;timed 2s&gt;&gt;
+        &lt;&lt;goto $nextpass&gt;&gt;
+        &lt;&lt;/timed&gt;&gt;
+
     &lt;&lt;elseif $codeword isnot &quot;&quot;&gt;&gt;
       /* Incorrect (non-empty) */
       &lt;&lt;replace &quot;#coderesult&quot;&gt;&gt;&lt;span&gt;Try again.&lt;/span&gt;&lt;&lt;/replace&gt;&gt;
@@ -466,21 +497,36 @@ setup.addPlaceholder = () => {
 &lt;br/&gt;
 &lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;
 
-&lt;&lt;done&gt;&gt;&lt;&lt;set $e to setup.addPlaceholder()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="scene3" tags="nobr" position="975,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene2&quot;&gt;&gt;
+&lt;&lt;done&gt;&gt;&lt;&lt;set $e to setup.addPlaceholder()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="scene3" tags="nobr" position="850,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene2&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene3-moveOn&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="scene3-text" tags="nobr" position="1100,350" size="100,100">&lt;p class=&quot;bold&quot;&gt;Scene 3 &lt;/p&gt;
-
-
-&lt;&lt;timed 5s&gt;&gt;
-    &lt;&lt;append &quot;#btnContainer&quot;&gt;&gt;
-    &lt;p&gt;What is the name of Arthur Conan Doyle’s famous literary creation?&lt;/p&gt;
-   &lt;&lt;include &quot;pwScene3&quot;&gt;&gt;
-    &lt;&lt;/append&gt;&gt;
-    
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="scene3-moveOn" tags="nobr" position="1225,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene3a&quot;&gt;&gt;
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="scene3-text" tags="nobr" position="975,350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto3.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;
+&lt;p class=&quot;bold&quot;&gt;Scene 3 &lt;/p&gt;
+&lt;div id=&quot;msgMount&quot;&gt;
+&lt;div class=&quot;inline-img-wrapper&quot;&gt;
+&lt;img src=&quot;../assets/img/audio.png&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;timed 44s&gt;&gt;
+    &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
+    &lt;p class=&quot;bold&quot;&gt;What is the name of Arthur Conan Doyle’s famous literary creation?&lt;/p&gt;
+    &lt;&lt;include &quot;pwScene3&quot;&gt;&gt;
+    &lt;&lt;/replace&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="scene3-seal" tags="nobr" position="1100,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene3a&quot;&gt;&gt;
+&lt;&lt;set $pass to &quot;scene3-seal&quot;&gt;&gt;
+&lt;&lt;set $nextpass to &quot;scene3-moveOn&quot;&gt;&gt;
+&lt;&lt;addclass &quot;body&quot; &quot;moveOn&quot;&gt;&gt;
+&lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
+&lt;main class=&quot;moveOn&quot;&gt;
+&lt;h1&gt;Sherlock Holmes&lt;/h1&gt;
+ &lt;div class=&quot;btn-container&quot; id=&quot;btnContainer&quot;&gt;
+ &lt;&lt;include &quot;sealButton&quot;&gt;&gt;
+&lt;/div&gt;
+&lt;/main&gt;</tw-passagedata><tw-passagedata pid="30" name="scene3-moveOn" tags="nobr" position="1225,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene3a&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene3-moveOn&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene4&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
@@ -490,17 +536,24 @@ setup.addPlaceholder = () => {
 &lt;&lt;set $nextpass to &quot;scene4a&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="scene4-text" tags="nobr" position="225,475" size="100,100">&lt;p class=&quot;bold&quot;&gt;Scene 4 &lt;/p&gt;
-
-&lt;&lt;timed 3s&gt;&gt;
-    &lt;p&gt;Head back down one flight of stairs to the Green Door that says ‘Back Stacks: Level 4’&lt;/p&gt;
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="scene4-text" tags="nobr" position="225,475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto4.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;
+&lt;p class=&quot;bold&quot;&gt;Scene 4 &lt;/p&gt;
+&lt;div id=&quot;msgMount&quot;&gt;
+&lt;div class=&quot;inline-img-wrapper&quot;&gt;
+&lt;img src=&quot;../assets/img/audio.png&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;timed 56s&gt;&gt;
+    &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
+&lt;p&gt;Head back down one flight of stairs to the Green Door that says ‘Back Stacks: Level 4’&lt;/p&gt;
 
 &lt;p&gt;You are looking for Geology/Science&lt;/p&gt;
 
 &lt;p&gt;When there, find ‘Man as a Geological Agent’ – it might be closer to the ‘Gold’ Section. When you find it, put your notepad on the book.&lt;/p&gt;
-
-    &lt;&lt;/timed&gt;&gt;
-/* END OF PASSAGE  */</tw-passagedata><tw-passagedata pid="33" name="credits" tags="nobr" position="350,475" size="100,100">&lt;&lt;set $prevpass to &quot;52_story&quot;&gt;&gt;
+    &lt;&lt;/replace&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="credits" tags="nobr" position="350,475" size="100,100">&lt;&lt;set $prevpass to &quot;52_story&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;credits&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;credits&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;

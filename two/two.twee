@@ -16,7 +16,7 @@ London Library 2
 :: Story Stylesheet [stylesheet]
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 @import url("../styles/generics.css");
 @import url("../styles/styles.css");
@@ -150,8 +150,23 @@ setup.addPlaceholder = () => {
     <</link>>
     <<link [img[../assets/img/replay-sharp-b.png][$pass]]>>
     <</link>>
+      <<link [img[../assets/img/for-sharp-b.png][$nextpass]]>>
+    <</link>>
+
     
-<div id="processingMount"></div>
+
+</div>
+
+:: navbuttonsend[nobr]
+
+<div class="footer-icons">
+<<link [img[../assets/img/back-sharp-b.png][$prevpass]]>>
+    <</link>>
+    <<link [img[../assets/img/replay-sharp-b.png][$pass]]>>
+    <</link>>
+
+
+    
 
 </div>
 
@@ -208,9 +223,8 @@ setup.addPlaceholder = () => {
     audioOn: true
 }>>
 <<set $btnAppearTime to "1s">>
-<<addclass "body" "maroon">>
-
-<<include "header">>
+<<addclass "body" "moveOn">>
+<header></header>
 <main>
 <<include "sealButton">>
    
@@ -219,9 +233,9 @@ setup.addPlaceholder = () => {
 /* <<include "wallet">> */
 
 :: _templateIntro[nobr]
-<<addclass "body" "maroon">>
-<<include "header">>
+<<addclass "body" "intro">>
 <main>
+<div id="audio"></div>
     <div id="msgMount">
         <<if $pass>>
              <<set $uniqueContent to $pass+"-text">>
@@ -234,12 +248,12 @@ setup.addPlaceholder = () => {
         </div>
   
 </main> 
-<<include "navbuttons">>
+<<include "navbuttonsb">>
 
 :: _templateStory [nobr]
-<<include "header">>
-<main>
 
+<main>
+<div id="audio"></div>
     <div id="msgMount"> </div>
         <<if $pass>>
       
@@ -260,29 +274,20 @@ setup.addPlaceholder = () => {
 </main>
 <<include "navbuttonsb">>
 
-:: _templateSeal [nobr]
-<<include "header">>
-<main>
- <div class="btn-container" id="btnContainer">
-</div>
-</main>
-<<timed $btnAppearTime>>
-    <<append "#btnContainer">>
-   <<include "sealButton">>
-        /* <<include "navbuttons">> */
-    <</append>>
-<</timed>>
-<<include "navbuttonsb">>
 
 :: sealButton [nobr]
-    <<button "SEAL">>
+<div class="sealBtn-container">
+    <<button [img["../assets/img/LL_wax_seal.png"]]>>
       <<goto $nextpass>>
         <</button>>
+        </div>
+
 
 
 
 :: _templateMoveOn [nobr]
-<<include "header">>
+/* <<include "header">> */
+<<addclass "body" "moveOn">>
 <main>
  <div class="btn-container" id="btnContainer">
 </div>
@@ -298,7 +303,6 @@ setup.addPlaceholder = () => {
 <<include "navbuttonsb">>
 
 
-
 :: scene5 [nobr]
 <<set $prevpass to "landing">>
 <<set $pass to "scene5">>
@@ -308,38 +312,48 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene5-text [nobr]
-<p class="bold">Scene 5 </p>
-
-<<timed 3s>>
-  <p> Head back out to the green carpeted staircase and walk up the stairs to Level 2 – you’ll go up 5 flights of stairs. When there wait on the landing for the next instruction.</p>
-
+  <<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto5.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
-
-<<timed 5s>>
+<p class="bold">Scene 5 </p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 189s>>
+    <<replace "#msgMount">>
+    <p> Head back out to the green carpeted staircase and walk up the stairs to Level 2 – you’ll go up 5 flights of stairs. When there wait on the landing for the next instruction.</p>
+    <<timed 5s>>
     <<append "#btnContainer">>
     <<button "Next">>
             <<goto $nextpass>>
         <</button>>
-   /* <<include "navbuttons">> */
-    <</append>>
-    
+    <</append>>  
 <</timed>>
+
+    <</replace>>
+<</timed>>
+
+
+
 
 :: scene5a [nobr]
 <<set $prevpass to "scene5">>
 <<set $pass to "scene5a">>
-<<set $nextpass to "scene5a-moveOn">>
+<<set $nextpass to "scene5a-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
 
 :: scene5a-text [nobr]
+<<timed 1s>>
 <p>I need you all to check in the Stacks for the manuscript.</p>
 <p>Find where Arthur Conan Doyle’s books are and write down the name of his 1907 ‘Through the Magic …’ and show it to your handler.  </p>
-
+<br/>
 <<include "pwScene5a">>
 
-
+<</timed>>
 
 :: pwScene5a [nobr]
 <<set $codeword to "">>  /* ensure it's blank so the placeholder shows */
@@ -356,10 +370,7 @@ setup.addPlaceholder = () => {
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
      <<timed 2s>>
-      <<replace "#msgMount">>
-        <p>Sherlock Holmes handwritten image</p>
-        <<include "sealButton">>
-      <</replace>>
+<<goto $nextpass>>
           <</timed>>
     <<elseif $codeword isnot "">>
       /* Incorrect (non-empty) */
@@ -374,13 +385,28 @@ setup.addPlaceholder = () => {
 
 <<done>><<set $e to setup.addPlaceholder()>><</done>>
 
+:: scene5a-seal [nobr]
+<<set $prevpass to "scene1">>
+<<set $pass to "scene5a-seal">>
+<<set $nextpass to "scene5a-moveOn">>
+<<audio ":all" "stop">>
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+<h1>Door</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
+
 :: scene5a-moveOn [nobr]
-<<set $prevpass to "scene5a">>
+<<set $prevpass to "scene5-seal">>
 <<set $pass to "scene5a-moveOn">>
 <<set $nextpass to "scene6">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateMoveOn">>
+
 
 :: scene6 [nobr]
 <<set $prevpass to "scene5a-moveOn">>
@@ -391,15 +417,21 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene6-text [nobr]
+ <<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto6.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+ 
 <p class="bold">Scene 6 </p>
-
-
-<<timed 3s>>
-    <<append "#msgMount">>
-    <p>Look through the box. Write down the name of anyone you find?</p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 87s>>
+    <<replace "#msgMount">>
+     <p class="bold">Look through the box. Write down the name of anyone you find?</p>
    <<include "pwScene6">>
-    <</append>>
-    
+    <</replace>>
 <</timed>>
 
 :: pwScene6 [nobr]
@@ -437,7 +469,7 @@ setup.addPlaceholder = () => {
 :: scene6a [nobr]
 <<set $prevpass to "scene6">>
 <<set $pass to "scene6a">>
-<<set $nextpass to "scene6b">>
+<<set $nextpass to "scene6b-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
@@ -462,24 +494,25 @@ setup.addPlaceholder = () => {
     
 <</timed>>
 
-:: scene6b [nobr]
+:: scene6b-seal [nobr]
 <<set $prevpass to "scene6a">>
-<<set $pass to "scene6b">>
+<<set $pass to "scene6b-seal">>
 <<set $nextpass to "scene6b-moveOn">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 
-<<include "header">>
-<main>
-<<timed 1s>>
-<p>Mary Riot Image</p>
-<<include "sealButton">>
-<</timed>>
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+<h1>Mary Riot</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
 </main>
-<<include "navbuttonsb">>
+
 
 :: scene6b-moveOn [nobr]
-<<set $prevpass to "scene6b">>
+<<set $prevpass to "scene6b-seal">>
 <<set $pass to "scene6b-moveOn">>
 <<set $nextpass to "scene7">>
 <<audio ":all" "stop">>
@@ -488,7 +521,7 @@ setup.addPlaceholder = () => {
 
 
 :: scene7 [nobr]
-<<set $prevpass to "scene6-moveOn">>
+<<set $prevpass to "scene6b-moveOn">>
 <<set $pass to "scene7">>
 <<set $nextpass to "scene7a">>
 <<audio ":all" "stop">>
@@ -496,23 +529,32 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene7-text [nobr]
-<p class="bold">Scene 7</p>
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto7.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+<p class="bold">Scene 7 </p>
+<div id="msgMount">
 <div class="inline-img-wrapper">
 <img src="../assets/img/audio.png">
 </div>
-<<timed 3s>>
-  <p>Head down the stairs all the way to the basement</p>
+</div>
+<<timed 71s>>
+    <<replace "#msgMount">>
+    <p>Head down the stairs all the way to the basement</p>
 <p>That’s 9 flights of stairs down!</p>
 <p>When there, click </p>
-    <</timed>>
-
-<<timed 5s>>
+<<timed 2s>>
     <<append "#btnContainer">>
-    <<button "MOVE ON">>
+    <<button "Move on">>
             <<goto $nextpass>>
         <</button>>
     <</append>>
+    
 <</timed>>
+    <</replace>>
+<</timed>>
+
+
 
 :: scene7a [nobr]
 <<set $prevpass to "scene7">>
@@ -543,7 +585,7 @@ setup.addPlaceholder = () => {
 :: scene8 [nobr]
 <<set $prevpass to "scene7a">>
 <<set $pass to "scene8">>
-<<set $nextpass to "scene8-moveOn">>
+<<set $nextpass to "scene8-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
@@ -551,9 +593,11 @@ setup.addPlaceholder = () => {
 :: scene8-text [nobr]
 
 <<timed 1s>>
-<p>MARY RIOT</p>
+    <br/>
+    <br/>
+<h1 class="center decorative">MARY RIOT</h1>
+<br/>
 <<include "pwScene8">>
-
     <</timed>>
 
 
@@ -572,10 +616,7 @@ setup.addPlaceholder = () => {
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
      <<timed 2s>>
-      <<replace "#msgMount">>
-        <p>Moriarty Image</p>
-        <<include "sealButton">>
-      <</replace>>
+    <<goto $nextpass>>
       <</timed>>
     <<elseif $codeword isnot "">>
       /* Incorrect (non-empty) */
@@ -588,9 +629,21 @@ setup.addPlaceholder = () => {
 <br/>
 <div id="coderesult"></div>
 
+:: scene8-seal [nobr]
+<<set $prevpass to "scene8">>
+<<set $pass to "scene8-seal">>
+<<set $nextpass to "scene8-moveOn">>
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+<h1>Moriarty</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
 
 :: scene8-moveOn [nobr]
-<<set $prevpass to "scene8">>
+<<set $prevpass to "scene8-seal">>
 <<set $pass to "scene8-moveOn">>
 <<set $nextpass to "scene9">>
 <<audio ":all" "stop">>
@@ -601,16 +654,27 @@ setup.addPlaceholder = () => {
 :: scene9 [nobr]
 <<set $prevpass to "scene8-moveOn">>
 <<set $pass to "scene9">>
-<<set $nextpass to "scene9-moveOn">>
+<<set $nextpass to "scene9-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
 
 :: scene9-text [nobr]
 
-<<timed 1s>>
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto9.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+<p class="bold">Scene 9 </p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 43s>>
+    <<replace "#msgMount">>
+
 <<include "pwScene9">>
-    
+    <</replace>>
 <</timed>>
 
 :: pwScene9 [nobr]
@@ -628,10 +692,7 @@ setup.addPlaceholder = () => {
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
      <<timed 2s>>
-      <<replace "#msgMount">>
-        <p>Reading Room 2.10 Image</p>
-        <<include "sealButton">>
-      <</replace>>
+ <<goto $nextpass>>
       <</timed>>
     <<elseif $codeword isnot "">>
       /* Incorrect (non-empty) */
@@ -643,6 +704,22 @@ setup.addPlaceholder = () => {
 </div>
 <br/>
 <div id="coderesult"></div>
+
+:: scene9-seal [nobr]
+<<set $prevpass to "scene9">>
+<<set $pass to "scene9-seal">>
+<<set $nextpass to "scene9-moveOn">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+<h1>Reading Room 2.10</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
 
 
 :: scene9-moveOn [nobr]
@@ -663,32 +740,40 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene10-text [nobr]
-<p class="bold">Scene 10</p>
-
-
-<<timed 1s>>
-    <<append "#msgMount">>
-<p>   Head to the Reading Room</p>
+ <<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto10.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+<p class="bold">Scene 10 </p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 47s>>
+    <<replace "#msgMount">>
+  <p>   Head to the Reading Room</p>
 <p>Walk through the Times Room up the TS Eliot staircase</p>
 <p>Go through the door and turn right and you’ll go find the Art Room.</p> 
 <p>Head through the Art Room and turn left up the staircase and let me know when you are outside the reading room. </p>
 <p>When there click</p>
-    <</append>>
-<</timed>>
-
-<<timed 3s>>
+<<timed 2s>>
     <<append "#btnContainer">>
     <<button "MOVE ON">>
             <<goto $nextpass>>
         <</button>>
     <</append>>
 <</timed>>
+    <</replace>>
+<</timed>>
+
+
+
 
 
 :: scene10a [nobr]
 <<set $prevpass to "scene10">>
 <<set $pass to "scene10a">>
-<<set $nextpass to "scene11">>
+<<set $nextpass to "scene10a-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
@@ -696,22 +781,31 @@ setup.addPlaceholder = () => {
 :: scene10a-text [nobr]
 
 
-<<timed 1s>>
+<<timed 0.1s>>
     <<append "#msgMount">>
-<p>Look towards the clock.</p>
-<p>2.10 will point you towards where the book is.</p>
-/
+    <p>Look towards the clock.</p>
+    <p>2.10 will point you towards where the book is.</p>
+    <</append>>
+    <</timed>>
+<<timed 2s>>
+    <<append "#msgMount">>
 <p>There might be something inside it.</p>
 <p>You might need to go up the staircase.</p>
-/
+  <</append>>
+    <</timed>>
+<<timed 4s>>
+    <<append "#msgMount">>
 <p>Where does 2.10 point towards?</p>
-/
+  <</append>>
+    <</timed>>
+<<timed 6s>>
+    <<append "#msgMount">>
 <p>When you’ve found the package head back out of the Reading Room and write down anything written down on the package </p>
+  <</append>>
+    <</timed>>
 
-    <</append>>
-<</timed>>
 
-<<timed 3s>>
+<<timed 8s>>
     <<append "#btnContainer">>
 <<include "pwScene10a">>
     <</append>>
@@ -733,10 +827,9 @@ setup.addPlaceholder = () => {
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
      
-      <<replace "#btnContainer">>
-        <p>Madame De Tencin Image</p>
-        <<include "sealButton">>
-      <</replace>>
+     <<timed 2s>>
+        <<goto $nextpass>>
+        <</timed>>
     <<elseif $codeword isnot "">>
       /* Incorrect (non-empty) */
       <<replace "#coderesult">><span>Try again.</span><</replace>>
@@ -748,9 +841,31 @@ setup.addPlaceholder = () => {
 <br/>
 <div id="coderesult"></div>
 
+:: scene10a-seal [nobr]
+<<set $prevpass to "scene10a">>
+<<set $pass to "scene10a-seal">>
+<<set $nextpass to "scene10a-moveOn">>
+<<audio ":all" "stop">>
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+<h1>Madame De Tencin</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
+
+:: scene10a-moveOn [nobr]
+<<set $prevpass to "scene10a-seal">>
+<<set $pass to "scene10a-moveOn">>
+<<set $nextpass to "scene11">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateMoveOn">>
+
 
 :: scene11 [nobr]
-<<set $prevpass to "pwScene10a">>
+<<set $prevpass to "scene10a-seal">>
 <<set $pass to "scene11">>
 <<set $nextpass to "scene11a">>
 <<audio ":all" "stop">>
@@ -758,15 +873,23 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene11-text [nobr]
+ <<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto11.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
 <p class="bold">Scene 11 </p>
-
-
-<<timed 1s>>
-
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 42s>>
+    <<replace "#msgMount">>
+     <p class="bold">Look through the box. Write down the name of anyone you find?</p>
    <<include "pwScene11">>
-
-    
+    <</replace>>
 <</timed>>
+
+
 
 
 :: pwScene11 [nobr]
@@ -800,7 +923,7 @@ setup.addPlaceholder = () => {
 :: scene11a [nobr]
 <<set $prevpass to "pwScene11">>
 <<set $pass to "scene11a">>
-<<set $nextpass to "scene11-moveOn">>
+<<set $nextpass to "scene11a-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
@@ -830,10 +953,7 @@ setup.addPlaceholder = () => {
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
      <<timed 2s>>
-  <<replace "#msgMount">>
-        <p>ANNIE Image</p>
-        <<include "sealButton">>
-      <</replace>>
+ <<goto $nextpass>>
       <</timed>>
     <<elseif $codeword isnot "">>
       /* Incorrect (non-empty) */
@@ -846,10 +966,23 @@ setup.addPlaceholder = () => {
 <br/>
 <div id="coderesult"></div>
 
+:: scene11a-seal [nobr]
+<<set $prevpass to "scene11a">>
+<<set $pass to "scene11a-seal">>
+<<set $nextpass to "scene11-moveOn">>
+<<audio ":all" "stop">>
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+<h1>Annie</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
 
 :: scene11-moveOn [nobr]
-<<set $prevpass to "scene11a">>
-<<set $pass to "scene11-moveO">>
+<<set $prevpass to "scene11a-seal">>
+<<set $pass to "scene11-moveOn">>
 <<set $nextpass to "scene12">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
@@ -857,7 +990,7 @@ setup.addPlaceholder = () => {
 
 
 :: scene12 [nobr]
-<<set $prevpass to "scene11-moveOn">>
+<<set $prevpass to "scene11a-seal">>
 <<set $pass to "scene12">>
 <<set $nextpass to "">>
 <<audio ":all" "stop">>
@@ -865,4 +998,146 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene12-text [nobr]
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto12.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
 <p class="bold">Scene 12 </p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 282s>>
+    <<replace "#msgMount">>
+     <p class="bold">It’s up to you...</p>
+   <<include "pwScene12">>
+    <</replace>>
+<</timed>>
+
+:: pwScene12 [nobr]
+<<set $codeword to "">>
+
+<div class="codeinput">
+  <<textbox "$codeword" "">>
+
+  <div class="input-btn">
+  <<button "Enter">>
+    <<set $codeword to $codeword.toUpperCase().trim()>>
+
+    /* WRITE IT → scene13a */
+    <<if $codeword is "WRITE IT">>
+      <<replace "#coderesult">><span>Sherlock Holmes lives. Today becomes a story.</span><</replace>>
+      <<timed 2s>>
+        <<goto "scene13a">>
+      <</timed>>
+
+    /* LET HIM FALL → scene13b */
+    <<elseif $codeword is "LET HIM FALL">>
+      <<replace "#coderesult">><span>"The Final Problem" is published. Today is yours alone.</span><</replace>>
+      <<timed 2s>>
+        <<goto "scene13b">>
+      <</timed>>
+
+    /* Incorrect input */
+    <<elseif $codeword isnot "">>
+      <<replace "#coderesult">><span>Nothing happens. Try again.</span><</replace>>
+      <<timed 1.5s>>
+        <<replace "#coderesult">><</replace>>
+      <</timed>>
+    <</if>>
+
+  <</button>>
+  </div>
+</div>
+
+<br/>
+<div id="coderesult"></div>
+
+
+
+:: scene13a [nobr]
+<<set $prevpass to "scene11a-seal">>
+<<set $pass to "scene13a">>
+<<set $nextpass to "end">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+
+:: scene13a-text [nobr]
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto13a.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 50s>>
+     <<addclass "body" "moveOn">>
+    <<replace "#msgMount">>
+    <h1>Free Annie</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+ </div>
+
+    <</replace>>
+<</timed>>
+
+
+:: scene13b [nobr]
+<<set $prevpass to "scene12">>
+<<set $pass to "scene13b">>
+<<set $nextpass to "end">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateStory">>
+
+:: scene13b-text [nobr]
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto13b.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 68s>>
+   <<replace "#msgMount">>
+    <<addclass "body" "moveOn">>
+    <h1>Arrest Annie</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+ </div>
+
+    <</replace>>
+<</timed>>
+
+
+
+:: end [nobr]
+<<set $prevpass to "scene12">>
+<<set $pass to "end">>
+<<set $nextpass to "end">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "end-text">>
+
+
+:: end-text [nobr]
+<<audio ":all" "stop">>
+<<addclass "body" "moveOn">>
+<main>
+    <h1>The End </h1> 
+        <div class="btn-container">
+      
+            <<button "Start again">>
+                <<script>>
+                Engine.restart()
+                <</script>>
+                <</button>>
+        </div>
+</main>
+<<include "navbuttonsend">>

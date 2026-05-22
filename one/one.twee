@@ -16,7 +16,7 @@ London Library 1
 :: Story Stylesheet [stylesheet]
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 @import url("../styles/generics.css");
 @import url("../styles/styles.css");
@@ -149,8 +149,8 @@ setup.addPlaceholder = () => {
     <</link>>
     <<link [img[../assets/img/replay-sharp-b.png][$pass]]>>
     <</link>>
-    
-<div id="processingMount"></div>
+    <<link [img[../assets/img/for-sharp-b.png][$nextpass]]>>
+    <</link>>
 
 </div>
 
@@ -209,7 +209,6 @@ setup.addPlaceholder = () => {
 <<set $btnAppearTime to "1s">>
 <<addclass "body" "maroon">>
 
-<<include "headerlanding">>
 /* <div class="hide warning"><h1>Please view this on a phone</h1></div> */
 <main class="landing flex-col-cen">
   <h1>London Library</h1>
@@ -223,9 +222,9 @@ setup.addPlaceholder = () => {
 /* <<include "wallet">> */
 
 :: _templateIntro[nobr]
-<<addclass "body" "maroon">>
-<<include "header">>
+<<addclass "body" "intro">>
 <main>
+<div id="audio"></div>
     <div id="msgMount">
         <<if $pass>>
              <<set $uniqueContent to $pass+"-text">>
@@ -238,12 +237,12 @@ setup.addPlaceholder = () => {
         </div>
   
 </main> 
-<<include "navbuttons">>
+<<include "navbuttonsb">>
 
 :: _templateStory [nobr]
-<<include "header">>
-<main>
 
+<main>
+<div id="audio"></div>
     <div id="msgMount"> </div>
         <<if $pass>>
       
@@ -264,29 +263,18 @@ setup.addPlaceholder = () => {
 </main>
 <<include "navbuttonsb">>
 
-:: _templateSeal [nobr]
-<<include "header">>
-<main>
- <div class="btn-container" id="btnContainer">
-</div>
-</main>
-<<timed $btnAppearTime>>
-    <<append "#btnContainer">>
-   <<include "sealButton">>
-        /* <<include "navbuttons">> */
-    <</append>>
-<</timed>>
-<<include "navbuttonsb">>
 
 :: sealButton [nobr]
-    <<button "SEAL">>
+<div class="sealBtn-container">
+    <<button [img["../assets/img/LL_wax_seal.png"]]>>
       <<goto $nextpass>>
         <</button>>
-
+        </div>
 
 
 :: _templateMoveOn [nobr]
-<<include "header">>
+/* <<include "header">> */
+<<addclass "body" "moveOn">>
 <main>
  <div class="btn-container" id="btnContainer">
 </div>
@@ -314,32 +302,55 @@ setup.addPlaceholder = () => {
 
 
 :: intro1-text [nobr]
-<p>Welcome to the Arthur Conan Doyle Trail. </p>
+<<timed 0.2s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+
+<<timed 0.1s>>
+    <<replace "#msgMount">>
+        <p>Welcome to the Arthur Conan Doyle Trail. </p>
+    <</replace>>
+<</timed>>
+<<timed 2s>>
+    <<append "#msgMount">>
 <p>You will be exploring the library with a group - do stay with them. </p>
-/
-<p>You should be able to hear my voice - if not you should put the volume up. </p>
-/
-<p>You will be asked to find information in the Library. </p>
-<p>We are only able to go on this trail if we are quiet throughout the Library.</p>
-/
-<p>There will be points that you need to wait for confirmation from your group leader to move on – as we are playing through this as a group and you might need to wait for others to catch up. </p>
-/
-<p>Your screen will show an image with a London Library seal on it – when you see this wait for the thumbs up from </p>
-/
-<p>Let’s try that now. </p>
-
-
-
-
-
-<<timed $btnAppearTime>>
-    <<append "#btnContainer">>
-    <<button "SEAL">>
-            <<goto $nextpass>>
-        <</button>>
-        /* <<include "navbuttons">> */
     <</append>>
 <</timed>>
+<<timed 4s>>
+    <<append "#msgMount">>
+<p>You should be able to hear my voice - if not you should put the volume up. </p>  
+    <</append>>
+<</timed>>
+<<timed 6s>>
+    <<append "#msgMount">>
+<p>You will be asked to find information in the Library. </p>
+<p>We are only able to go on this trail if we are quiet throughout the Library.</p>
+    <</append>>
+<</timed>>
+<<timed 8s>>
+    <<append "#msgMount">>
+<p>There will be points that you need to wait for confirmation from your group leader to move on – as we are playing through this as a group and you might need to wait for others to catch up. </p>
+    <</append>>
+<</timed>>
+<<timed 10s>>
+    <<append "#msgMount">>
+<p>Your screen will show an image with a London Library seal on it – when you see this wait for the thumbs up from </p>
+    <</append>>
+<</timed>>
+<<timed 12s>>
+    <<append "#msgMount">>
+<p>Let’s try that now. </p>
+    <</append>>
+<</timed>>
+
+<<timed 12s>>
+    <<append "#msgMount">>
+
+    <<include "sealButton">>
+
+    <</append>>
+<</timed>>
+
 
 
 
@@ -365,9 +376,7 @@ setup.addPlaceholder = () => {
 
 <<timed $btnAppearTime>>
     <<append "#btnContainer">>
-    <<button "SEAL">>
-            <<goto $nextpass>>
-        <</button>>
+  <<include "sealButton">>
         /* <<include "navbuttons">> */
     <</append>>
 <</timed>>
@@ -378,16 +387,24 @@ setup.addPlaceholder = () => {
 <<set $pass to "scene1">>
 <<set $nextpass to "scene1-seal">>
 <<audio ":all" "stop">>
-<audio src="" autoplay>Audio is not supported on your device</audio>
+
 <<include "_templateStory">>
 
 :: scene1-text [nobr]
+  <<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto1.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
 <p class="bold">Scene 1 </p>
-
-<<timed 3s>>
-<p class="bold">What is the name of the city on the dial of the library clock? </p>
-<<include "pwScene1">>
-    
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 98s>>
+    <<replace "#msgMount">>
+    <p class="bold">What is the name of the city on the dial of the library clock? </p>
+    <<include "pwScene1">>
+    <</replace>>
 <</timed>>
 
 :: pwScene1 [nobr]
@@ -424,8 +441,15 @@ setup.addPlaceholder = () => {
 <<set $pass to "scene1-seal">>
 <<set $nextpass to "scene1-moveOn">>
 <<audio ":all" "stop">>
+<<addclass "body" "moveOn">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
-<<include "_templateSeal">>
+<main class="moveOn">
+<h1>London</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
+<<include "navbuttonsb">>
 
 :: scene1-moveOn [nobr]
 <<set $prevpass to "scene1-seal">>
@@ -438,29 +462,36 @@ setup.addPlaceholder = () => {
 :: scene2 [nobr]
 <<set $prevpass to "scene1-moveOn">>
 <<set $pass to "scene2">>
-<<set $nextpass to "scene3">>
+<<set $nextpass to "scene3-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
 
 :: scene2-text [nobr]
-<p class="bold">Scene 2 </p>
-
-<<timed 3s>>
-    <p>Head up the stairs with the green carpet – walk up to flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
-<p>When there click your handler will give you permission to press below</p>
-
+  <<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto2.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
-
+<p class="bold">Scene 2 </p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 54s>>
+    <<replace "#msgMount">>
+    <p>Head up the stairs with the green carpet – walk up to flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
+<p>When there click your handler will give you permission to press below.</p>
 <<timed 5s>>
     <<append "#btnContainer">>
     <<button "Next">>
             <<goto $nextpass>>
         <</button>>
-   /* <<include "navbuttons">> */
     <</append>>
     
 <</timed>>
+    <</replace>>
+<</timed>>
+
 
 
 
@@ -479,10 +510,10 @@ setup.addPlaceholder = () => {
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
      
-       <<replace "#btnContainer">>
-        <p>Sherlock Holmes handwritten image</p>
-        <<include "sealButton">>
-      <</replace>>
+       <<timed 2s>>
+        <<goto $nextpass>>
+        <</timed>>
+
     <<elseif $codeword isnot "">>
       /* Incorrect (non-empty) */
       <<replace "#coderesult">><span>Try again.</span><</replace>>
@@ -505,18 +536,35 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene3-text [nobr]
+
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto3.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
 <p class="bold">Scene 3 </p>
-
-
-<<timed 5s>>
-    <<append "#btnContainer">>
-    <p>What is the name of Arthur Conan Doyle’s famous literary creation?</p>
-   <<include "pwScene3">>
-    <</append>>
-    
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 44s>>
+    <<replace "#msgMount">>
+    <p class="bold">What is the name of Arthur Conan Doyle’s famous literary creation?</p>
+    <<include "pwScene3">>
+    <</replace>>
 <</timed>>
 
-
+:: scene3-seal[nobr]
+<<set $prevpass to "scene3a">>
+<<set $pass to "scene3-seal">>
+<<set $nextpass to "scene3-moveOn">>
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+<h1>Sherlock Holmes</h1>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
 
 
 :: scene3-moveOn [nobr]
@@ -537,17 +585,27 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene4-text [nobr]
-<p class="bold">Scene 4 </p>
 
-<<timed 3s>>
-    <p>Head back down one flight of stairs to the Green Door that says ‘Back Stacks: Level 4’</p>
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto4.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+<p class="bold">Scene 4 </p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 56s>>
+    <<replace "#msgMount">>
+<p>Head back down one flight of stairs to the Green Door that says ‘Back Stacks: Level 4’</p>
 
 <p>You are looking for Geology/Science</p>
 
 <p>When there, find ‘Man as a Geological Agent’ – it might be closer to the ‘Gold’ Section. When you find it, put your notepad on the book.</p>
+    <</replace>>
+<</timed>>
 
-    <</timed>>
-/* END OF PASSAGE  */
+
 
 
 
