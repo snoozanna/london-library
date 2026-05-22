@@ -296,7 +296,7 @@ setup.addPlaceholder = () => {
 :: intro1 [nobr]
 <<set $prevpass to "landing">>
 <<set $pass to "intro1">>
-<<set $nextpass to "introMoveOn">>
+<<set $nextpass to "intro1-seal">>
 
 <<include "_templateIntro">>
 
@@ -351,12 +351,24 @@ setup.addPlaceholder = () => {
     <</append>>
 <</timed>>
 
-
+:: intro1-seal [nobr]
+<<set $prevpass to "intro1">>
+<<set $pass to "intro1-seal">>
+<<set $nextpass to "introMoveOn">>
+<<audio ":all" "stop">>
+<<addclass "body" "moveOn">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<main class="moveOn">
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
+<<include "navbuttonsb">>
 
 
 
 :: introMoveOn [nobr]
-<<set $prevpass to "intro1">>
+<<set $prevpass to "intro1-seal">>
 <<set $pass to "introMoveOn">>
 <<set $nextpass to "intro2">>
 <<include "_templateMoveOn">>
