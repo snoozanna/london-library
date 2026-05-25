@@ -482,7 +482,7 @@ setup.addPlaceholder = () => {
 :: scene2 [nobr]
 <<set $prevpass to "scene1-moveOn">>
 <<set $pass to "scene2">>
-<<set $nextpass to "scene3-seal">>
+<<set $nextpass to "scene3">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
@@ -500,7 +500,7 @@ setup.addPlaceholder = () => {
 <<timed 54s>>
     <<replace "#msgMount">>
     <p>Head up the stairs with the green carpet – walk up to flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
-<p>When there click your handler will give you permission to press below.</p>
+<p>When there, your handler will give you permission to press below.</p>
 <<timed 5s>>
     <<append "#btnContainer">>
     <<button "Next">>
@@ -550,7 +550,7 @@ setup.addPlaceholder = () => {
 :: scene3 [nobr]
 <<set $prevpass to "scene2">>
 <<set $pass to "scene3">>
-<<set $nextpass to "scene3-moveOn">>
+<<set $nextpass to "scene3-seal">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
@@ -574,7 +574,7 @@ setup.addPlaceholder = () => {
 <</timed>>
 
 :: scene3-seal[nobr]
-<<set $prevpass to "scene3a">>
+<<set $prevpass to "scene3">>
 <<set $pass to "scene3-seal">>
 <<set $nextpass to "scene3-moveOn">>
 <<addclass "body" "moveOn">>
@@ -588,7 +588,7 @@ setup.addPlaceholder = () => {
 
 
 :: scene3-moveOn [nobr]
-<<set $prevpass to "scene3a">>
+<<set $prevpass to "scene3-seal">>
 <<set $pass to "scene3-moveOn">>
 <<set $nextpass to "scene4">>
 <<audio ":all" "stop">>

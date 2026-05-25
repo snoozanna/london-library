@@ -760,7 +760,7 @@ setup.addPlaceholder = () => {
 &lt;/div&gt;
 &lt;&lt;timed 42s&gt;&gt;
     &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
-     &lt;p class=&quot;bold&quot;&gt;Look through the box. Write down the name of anyone you find?&lt;/p&gt;
+     &lt;p class=&quot;bold&quot;&gt;Break the code in the Madame De Tencin painting using your codebreaker and write it below. &lt;/p&gt;
    &lt;&lt;include &quot;pwScene11&quot;&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="pwScene11" tags="nobr" position="225,725" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
@@ -853,52 +853,29 @@ setup.addPlaceholder = () => {
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;&lt;timed 282s&gt;&gt;
+  /* &lt;&lt;timed 2s&gt;&gt; */
     &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
      &lt;p class=&quot;bold&quot;&gt;It’s up to you...&lt;/p&gt;
-   &lt;&lt;include &quot;pwScene12&quot;&gt;&gt;
-    &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="pwScene12" tags="nobr" position="1225,725" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;
-
-&lt;div class=&quot;codeinput&quot;&gt;
-  &lt;&lt;textbox &quot;$codeword&quot; &quot;&quot;&gt;&gt;
-
-  &lt;div class=&quot;input-btn&quot;&gt;
-  &lt;&lt;button &quot;Enter&quot;&gt;&gt;
-    &lt;&lt;set $codeword to $codeword.toUpperCase().trim()&gt;&gt;
-
-    /* WRITE IT → scene13a */
-    &lt;&lt;if $codeword is &quot;WRITE IT&quot;&gt;&gt;
-      &lt;&lt;replace &quot;#coderesult&quot;&gt;&gt;&lt;span&gt;Sherlock Holmes lives. Today becomes a story.&lt;/span&gt;&lt;&lt;/replace&gt;&gt;
-      &lt;&lt;timed 2s&gt;&gt;
-        &lt;&lt;goto &quot;scene13a&quot;&gt;&gt;
-      &lt;&lt;/timed&gt;&gt;
-
-    /* LET HIM FALL → scene13b */
-    &lt;&lt;elseif $codeword is &quot;LET HIM FALL&quot;&gt;&gt;
-      &lt;&lt;replace &quot;#coderesult&quot;&gt;&gt;&lt;span&gt;&quot;The Final Problem&quot; is published. Today is yours alone.&lt;/span&gt;&lt;&lt;/replace&gt;&gt;
-      &lt;&lt;timed 2s&gt;&gt;
-        &lt;&lt;goto &quot;scene13b&quot;&gt;&gt;
-      &lt;&lt;/timed&gt;&gt;
-
-    /* Incorrect input */
-    &lt;&lt;elseif $codeword isnot &quot;&quot;&gt;&gt;
-      &lt;&lt;replace &quot;#coderesult&quot;&gt;&gt;&lt;span&gt;Nothing happens. Try again.&lt;/span&gt;&lt;&lt;/replace&gt;&gt;
-      &lt;&lt;timed 1.5s&gt;&gt;
-        &lt;&lt;replace &quot;#coderesult&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;
-      &lt;&lt;/timed&gt;&gt;
-    &lt;&lt;/if&gt;&gt;
-
-  &lt;&lt;/button&gt;&gt;
+  &lt;div class=&quot;choice-container&quot;&gt;
+  &lt;div class=&quot;choice-item&quot;&gt;
+       &lt;span&gt;Sherlock Holmes lives. Today becomes a story.&lt;/span&gt;
+    &lt;&lt;button &quot;WRITE IT&quot;&gt;&gt;
+      &lt;&lt;goto &quot;scene13a&quot;&gt;&gt;
+      &lt;&lt;/button&gt;&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;br/&gt;
-&lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="scene13a" tags="nobr" position="100,850" size="100,100">&lt;&lt;set $prevpass to &quot;scene11a-seal&quot;&gt;&gt;
+   &lt;div class=&quot;choice-item&quot;&gt;
+       &lt;span&gt;&quot;The Final Problem&quot; is published. Today is yours alone.&lt;/span&gt;
+    &lt;&lt;button &quot; LET HIM FALL&quot;&gt;&gt;
+      &lt;&lt;goto &quot;scene13b&quot;&gt;&gt;
+      &lt;&lt;/button&gt;&gt;
+  &lt;/div&gt;
+    &lt;&lt;/replace&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="scene13a" tags="nobr" position="1225,725" size="100,100">&lt;&lt;set $prevpass to &quot;scene11a-seal&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene13a&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;end&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="scene13a-text" tags="nobr" position="225,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="scene13a-text" tags="nobr" position="100,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto13a.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 
@@ -916,12 +893,12 @@ setup.addPlaceholder = () => {
  &lt;/div&gt;
 
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="scene13b" tags="nobr" position="350,850" size="100,100">&lt;&lt;set $prevpass to &quot;scene12&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="scene13b" tags="nobr" position="225,850" size="100,100">&lt;&lt;set $prevpass to &quot;scene12&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene13b&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;end&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="scene13b-text" tags="nobr" position="475,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="scene13b-text" tags="nobr" position="350,850" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
     &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto13b.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 
@@ -939,12 +916,12 @@ setup.addPlaceholder = () => {
  &lt;/div&gt;
 
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="end" tags="nobr" position="600,850" size="100,100">&lt;&lt;set $prevpass to &quot;scene12&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="end" tags="nobr" position="475,850" size="100,100">&lt;&lt;set $prevpass to &quot;scene12&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;end&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;end&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;end-text&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="end-text" tags="nobr" position="725,850" size="100,100">&lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
+&lt;&lt;include &quot;end-text&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="end-text" tags="nobr" position="600,850" size="100,100">&lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;&lt;addclass &quot;body&quot; &quot;moveOn&quot;&gt;&gt;
 &lt;main&gt;
     &lt;h1&gt;The End &lt;/h1&gt; 

@@ -881,7 +881,7 @@ setup.addPlaceholder = () => {
 </div>
 <<timed 42s>>
     <<replace "#msgMount">>
-     <p class="bold">Look through the box. Write down the name of anyone you find?</p>
+     <p class="bold">Break the code in the Madame De Tencin painting using your codebreaker and write it below. </p>
    <<include "pwScene11">>
     <</replace>>
 <</timed>>
@@ -1005,50 +1005,26 @@ setup.addPlaceholder = () => {
 </div>
 </div>
 <<timed 282s>>
+  /* <<timed 2s>> */
     <<replace "#msgMount">>
      <p class="bold">It’s up to you...</p>
-   <<include "pwScene12">>
+  <div class="choice-container">
+  <div class="choice-item">
+       <span>Sherlock Holmes lives. Today becomes a story.</span>
+    <<button "WRITE IT">>
+      <<goto "scene13a">>
+      <</button>>
+  </div>
+   <div class="choice-item">
+       <span>"The Final Problem" is published. Today is yours alone.</span>
+    <<button " LET HIM FALL">>
+      <<goto "scene13b">>
+      <</button>>
+  </div>
     <</replace>>
 <</timed>>
 
-:: pwScene12 [nobr]
-<<set $codeword to "">>
 
-<div class="codeinput">
-  <<textbox "$codeword" "">>
-
-  <div class="input-btn">
-  <<button "Enter">>
-    <<set $codeword to $codeword.toUpperCase().trim()>>
-
-    /* WRITE IT → scene13a */
-    <<if $codeword is "WRITE IT">>
-      <<replace "#coderesult">><span>Sherlock Holmes lives. Today becomes a story.</span><</replace>>
-      <<timed 2s>>
-        <<goto "scene13a">>
-      <</timed>>
-
-    /* LET HIM FALL → scene13b */
-    <<elseif $codeword is "LET HIM FALL">>
-      <<replace "#coderesult">><span>"The Final Problem" is published. Today is yours alone.</span><</replace>>
-      <<timed 2s>>
-        <<goto "scene13b">>
-      <</timed>>
-
-    /* Incorrect input */
-    <<elseif $codeword isnot "">>
-      <<replace "#coderesult">><span>Nothing happens. Try again.</span><</replace>>
-      <<timed 1.5s>>
-        <<replace "#coderesult">><</replace>>
-      <</timed>>
-    <</if>>
-
-  <</button>>
-  </div>
-</div>
-
-<br/>
-<div id="coderesult"></div>
 
 
 
