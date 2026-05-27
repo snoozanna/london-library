@@ -532,12 +532,23 @@ setup.addPlaceholder = () => {
 &lt;&lt;set $nextpass to &quot;scene8-seal&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="scene8-text" tags="nobr" position="475,475" size="100,100">&lt;&lt;timed 1s&gt;&gt;
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="scene8-text" tags="nobr" position="475,475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto8.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;
+&lt;p class=&quot;bold&quot;&gt;Scene 8 &lt;/p&gt;
+&lt;div id=&quot;msgMount&quot;&gt;
+&lt;div class=&quot;inline-img-wrapper&quot;&gt;
+&lt;img src=&quot;../assets/img/audio.png&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;timed 74s&gt;&gt;
+      &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
     &lt;br/&gt;
     &lt;br/&gt;
 &lt;h1 class=&quot;center decorative&quot;&gt;MARY RIOT&lt;/h1&gt;
 &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
 &lt;&lt;include &quot;pwScene8&quot;&gt;&gt;
+&lt;&lt;/replace&gt;&gt;
     &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="pwScene8" tags="nobr" position="600,475" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
 
 &lt;div class=&quot;codeinput&quot;&gt;

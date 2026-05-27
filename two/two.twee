@@ -588,13 +588,23 @@ setup.addPlaceholder = () => {
 <<include "_templateStory">>
 
 :: scene8-text [nobr]
-
-<<timed 1s>>
+<<timed 0.1s>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto8.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <</timed>>
+<p class="bold">Scene 8 </p>
+<div id="msgMount">
+<div class="inline-img-wrapper">
+<img src="../assets/img/audio.png">
+</div>
+</div>
+<<timed 74s>>
+      <<replace "#msgMount">>
     <br/>
     <br/>
 <h1 class="center decorative">MARY RIOT</h1>
 <br/><br/><br/>
 <<include "pwScene8">>
+<</replace>>
     <</timed>>
 
 
@@ -638,6 +648,7 @@ setup.addPlaceholder = () => {
  <<include "sealButton">>
 </div>
 </main>
+
 
 :: scene8-moveOn [nobr]
 <<set $prevpass to "scene8-seal">>
