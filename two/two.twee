@@ -1005,7 +1005,6 @@ setup.addPlaceholder = () => {
 </div>
 </div>
 <<timed 282s>>
-  /* <<timed 2s>> */
     <<replace "#msgMount">>
      <p class="bold">It’s up to you...</p>
   <div class="choice-container">
