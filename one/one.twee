@@ -16,7 +16,7 @@ London Library 1
 :: Story Stylesheet [stylesheet]
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 
 @import url("../styles/generics.css");
 @import url("../styles/styles.css");
@@ -137,7 +137,7 @@ setup.addPlaceholder = () => {
     <</link>>
     <<link [img[../assets/img/replay-sharp.png][$pass]]>>
     <</link>>
-    
+   
 <div><div/>
 
 </div>
@@ -161,6 +161,7 @@ setup.addPlaceholder = () => {
     <</link>>
     <<link [img[../assets/img/replay-sharp-b.png][$pass]]>>
     <</link>>
+    
 </div>
 
 :: navbuttonstext[nobr]
@@ -293,19 +294,45 @@ setup.addPlaceholder = () => {
     <<button "MOVE ON">>
             <<goto $nextpass>>
         <</button>>
-        /* <<include "navbuttons">> */
+     
     <</append>>
 <</timed>>
 <<include "navbuttonsb">>
 
+:: _templateSeal[nobr]
+/* <<include "header">> */
+<<addclass "body" "moveOn">>
+<main class="moveOn">
+<div class="paper-text-container" id="textContainer">
+    <img src="../assets/img/blankpaper.png" alt="blank paper"/>
 
+</div>
+ <div class="btn-container" id="btnContainer">
+ <<include "sealButton">>
+</div>
+</main>
+<<include "navbuttonsb">>
+
+:: dust [nobr]
+<div class="dust">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
 
 
 :: intro1 [nobr]
 <<set $prevpass to "landing">>
 <<set $pass to "intro1">>
-<<set $nextpass to "intro1-seal">>
+<<set $nextpass to "intro2">>
 
 <<include "_templateIntro">>
 
@@ -317,33 +344,32 @@ setup.addPlaceholder = () => {
 
 <<timed 0.1s>>
     <<replace "#msgMount">>
-        <p>Welcome to the Arthur Conan Doyle Trail. </p>
+       <p> Welcome to the Arthur Conan Doyle Trail. </p>
+<p>You will be exploring the library with a group - do stay with them. </p>
+
     <</replace>>
 <</timed>>
 <<timed 2s>>
     <<append "#msgMount">>
-<p>You will be exploring the library with a group - do stay with them. </p>
+<p>You should be able to hear some music - if not you should turn the volume up. </p>
     <</append>>
 <</timed>>
-<<timed 4s>>
-    <<append "#msgMount">>
-<p>You should be able to hear my voice - if not you should put the volume up. </p>  
-    <</append>>
-<</timed>>
+
 <<timed 6s>>
     <<append "#msgMount">>
 <p>You will be asked to find information in the Library. </p>
 <p>We are only able to go on this trail if we are quiet throughout the Library.</p>
+
     <</append>>
 <</timed>>
 <<timed 8s>>
     <<append "#msgMount">>
-<p>There will be points that you need to wait for confirmation from your group leader to move on – as we are playing through this as a group and you might need to wait for others to catch up. </p>
+<p>There will be points where you will need to wait for confirmation from your group leader to move on – as we are playing through this as a group and you might need to wait for others to catch up.  </p>
     <</append>>
 <</timed>>
 <<timed 10s>>
     <<append "#msgMount">>
-<p>Your screen will show an image with a London Library seal on it – when you see this wait for the thumbs up from </p>
+<p>Your screen will show an image with a London Library seal on it – when you see this wait for the thumbs up from your handler before pressing the seal.. </p>
     <</append>>
 <</timed>>
 <<timed 12s>>
@@ -360,32 +386,12 @@ setup.addPlaceholder = () => {
     <</append>>
 <</timed>>
 
-:: intro1-seal [nobr]
-<<set $prevpass to "intro1">>
-<<set $pass to "intro1-seal">>
-<<set $nextpass to "introMoveOn">>
-<<audio ":all" "stop">>
-<<addclass "body" "moveOn">>
-<audio src="" autoplay>Audio is not supported on your device</audio>
-<main class="moveOn">
- <div class="btn-container" id="btnContainer">
- <<include "sealButton">>
-</div>
-</main>
-<<include "navbuttonsb">>
 
-
-
-:: introMoveOn [nobr]
-<<set $prevpass to "intro1-seal">>
-<<set $pass to "introMoveOn">>
-<<set $nextpass to "intro2">>
-<<include "_templateMoveOn">>
 
 
 
 :: intro2 [nobr]
-<<set $prevpass to "introMoveOn">>
+<<set $prevpass to "intro1">>
 <<set $pass to "intro2">>
 <<set $nextpass to "scene1">>
 <<audio ":all" "stop">>
@@ -393,9 +399,17 @@ setup.addPlaceholder = () => {
 <<include "_templateIntro">>
 
 :: intro2-text [nobr]
-<p>Great, let’s begin in the Issue Hall. </p>
+<<timed 0.1s>>
+    <p>Great, let’s begin in the Issue Hall. </p>
 
-<<timed $btnAppearTime>>
+<</timed>>
+
+<<timed 2s>>
+    <p>When there, click the seal</p>
+<</timed>>
+
+
+<<timed 3s>>
     <<append "#btnContainer">>
   <<include "sealButton">>
         /* <<include "navbuttons">> */
@@ -417,13 +431,13 @@ setup.addPlaceholder = () => {
     <</timed>>
 <p class="bold">Scene 1 </p>
 <div id="msgMount">
-<div class="inline-img-wrapper">
-<img src="../assets/img/audio.png">
+<div class="inline-img-wrapper gramophone">
+<img src="../assets/img/grammaphone.gif">
 </div>
 </div>
 <<timed 98s>>
     <<replace "#msgMount">>
-    <p class="bold">What is the name of the city on the dial of the library clock? </p>
+    <p class="bold">What is the name of the city on the dial of the library clock?</p>
     <<include "pwScene1">>
     <</replace>>
 <</timed>>
@@ -460,27 +474,19 @@ setup.addPlaceholder = () => {
 :: scene1-seal [nobr]
 <<set $prevpass to "scene1">>
 <<set $pass to "scene1-seal">>
-<<set $nextpass to "scene1-moveOn">>
-<<audio ":all" "stop">>
-<<addclass "body" "moveOn">>
-<audio src="" autoplay>Audio is not supported on your device</audio>
-<main class="moveOn">
-<h1>London</h1>
- <div class="btn-container" id="btnContainer">
- <<include "sealButton">>
-</div>
-</main>
-
-:: scene1-moveOn [nobr]
-<<set $prevpass to "scene1-seal">>
-<<set $pass to "scene1-moveOn">>
 <<set $nextpass to "scene2">>
 <<audio ":all" "stop">>
+<<include "_templateSeal">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
-<<include "_templateMoveOn">>
+<<timed 0.1s>>
+    <<append "#textContainer">>
+        <h1>London</h1>
+        <</append>>
+    <</timed>>
+
 
 :: scene2 [nobr]
-<<set $prevpass to "scene1-moveOn">>
+<<set $prevpass to "scene1">>
 <<set $pass to "scene2">>
 <<set $nextpass to "scene3">>
 <<audio ":all" "stop">>
@@ -493,14 +499,15 @@ setup.addPlaceholder = () => {
     <</timed>>
 <p class="bold">Scene 2 </p>
 <div id="msgMount">
-<div class="inline-img-wrapper">
-<img src="../assets/img/audio.png">
+<div class="inline-img-wrapper gramophone">
+<img src="../assets/img/grammaphone.gif">
 </div>
 </div>
 <<timed 54s>>
     <<replace "#msgMount">>
-    <p>Head up the stairs with the green carpet – walk up to flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
-<p>When there, your handler will give you permission to press below.</p>
+   <p> Head up the stairs with the green carpet – walk up two flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
+<p>When there click your handler will give you permission to press below</p>
+
 <<timed 5s>>
     <<append "#btnContainer">>
     <<button "Next">>
@@ -526,7 +533,7 @@ setup.addPlaceholder = () => {
     <<set $codeword to $codeword.toUpperCase().trim()>>
 
     /* Correct */
-    <<if $codeword is "SHERLOCK HOLMES">>
+    <<if $codeword is "STRAND MAGAZINE">>
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
      
@@ -562,13 +569,13 @@ setup.addPlaceholder = () => {
     <</timed>>
 <p class="bold">Scene 3 </p>
 <div id="msgMount">
-<div class="inline-img-wrapper">
-<img src="../assets/img/audio.png">
+<div class="inline-img-wrapper gramophone">
+<img src="../assets/img/grammaphone.gif">
 </div>
 </div>
 <<timed 44s>>
     <<replace "#msgMount">>
-    <p class="bold">What is the name of Arthur Conan Doyle’s famous literary creation?</p>
+    <p class="bold">Can you tell me the name of the magazine that publishes his short stories? </p>
     <<include "pwScene3">>
     <</replace>>
 <</timed>>
@@ -576,28 +583,19 @@ setup.addPlaceholder = () => {
 :: scene3-seal[nobr]
 <<set $prevpass to "scene3">>
 <<set $pass to "scene3-seal">>
-<<set $nextpass to "scene3-moveOn">>
-<<addclass "body" "moveOn">>
-<audio src="" autoplay>Audio is not supported on your device</audio>
-<main class="moveOn">
-<h1>Sherlock Holmes</h1>
- <div class="btn-container" id="btnContainer">
- <<include "sealButton">>
-</div>
-</main>
-
-
-:: scene3-moveOn [nobr]
-<<set $prevpass to "scene3-seal">>
-<<set $pass to "scene3-moveOn">>
 <<set $nextpass to "scene4">>
-<<audio ":all" "stop">>
+<<addclass "body" "moveOn">>
+<<include "_templateSeal">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
-<<include "_templateMoveOn">>
+<<timed 0.1s>>
+    <<append "#textContainer">>
+        <h1>Strand Magazine</h1>
+        <</append>>
+    <</timed>>
 
 
 :: scene4 [nobr]
-<<set $prevpass to "scene3-moveOn">>
+<<set $prevpass to "scene3-seal">>
 <<set $pass to "scene4">>
 <<set $nextpass to "">>
 <<audio ":all" "stop">>
@@ -613,18 +611,20 @@ setup.addPlaceholder = () => {
     <</timed>>
 <p class="bold">Scene 4 </p>
 <div id="msgMount">
-<div class="inline-img-wrapper">
-<img src="../assets/img/audio.png">
+<div class="inline-img-wrapper gramophone">
+<img src="../assets/img/grammaphone.gif">
 </div>
 </div>
 <<timed 56s>>
-    <<replace "#msgMount">>
-<p>Head back down one flight of stairs to the Green Door that says ‘Back Stacks: Level 4’</p>
+    <<append "#msgMount">>
+<p>Head back down one flight of stairs to the Green Door with the sign: ‘Back Stacks: Level 4’</p>
 
-<p>You are looking for Geology/Science</p>
+<p>You are looking for Geology/Science.</p> 
 
-<p>When there, find ‘Man as a Geological Agent’ – it might be closer to the ‘Gold’ Section. When you find it, put your notepad on the book.</p>
-    <</replace>>
+<p>When there, find ‘Man as a Geological Agent’ – it might be closer to the ‘Gold’ Section. </p>
+<p>When you find it, put your notepad on the book.</p>
+
+    <</append>>
 <</timed>>
 </main>
 <<include "navbuttonsend">>
