@@ -510,7 +510,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-        <img src="assets/img/London4.gif" alt="London"/>
+        <img src="assets/img/london1.gif" alt="London"/>
         <</append>>
     <</timed>>
 
@@ -626,7 +626,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-               <img src="assets/img/strand1.gif" alt="Strand Magazine"/>
+               <img src="assets/img/mag1.gif" alt="Strand Magazine"/>
 
         <</append>>
     <</timed>>
