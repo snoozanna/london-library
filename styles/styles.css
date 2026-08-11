@@ -837,6 +837,7 @@ body.moveOn main {
 .paper-text-container {
   position: relative;
   display: inline-block;
+  max-width: 500px;
   /* Start slightly rotated */
   transform: rotate(-2deg) translateY(20px);
   opacity: 0;
