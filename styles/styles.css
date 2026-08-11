@@ -301,7 +301,7 @@ main {
 
 main {
   height: 100%;
-  margin-block-start: 6rem;
+  margin-block-start: 2rem;
   margin-block-end: 10rem;
   display: flex;
   flex-direction: column;
@@ -356,6 +356,22 @@ header.standard.scrollable {
     width: 80%;
     margin: auto;
   }
+}
+
+/* BeVELL */
+
+header.bevell {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bevell-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* maroon  */
@@ -414,6 +430,10 @@ body.intro button:active {
   color: var(--white);
 }
 
+main.intro {
+  text-align: center;
+}
+
 /* FOOTER  */
 footer {
   display: flex;
@@ -459,14 +479,18 @@ h3 {
   font-size: 2.2rem;
 }
 p {
-  font-size: 2rem;
+  font-size: 2.4rem;
   margin-block-end: 1.5rem;
-  line-height: 2.4rem;
+  line-height: 3rem;
   font-weight: 400;
 }
 
 p.bold {
   font-weight: bold;
+}
+
+p.center {
+  text-align: center;
 }
 
 span.accent {
@@ -552,105 +576,79 @@ input[type='text']::placeholder {
   font-size: 35px;
 }
 
-/* WALLET  */
-.wallet {
+/* QUESTIONS  */
+
+main.question {
+  min-height: 80vh;
   display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  margin: auto;
-  font-size: 1.3rem;
-  border: solid 2px white;
-  width: fit-content;
-  background: cadetblue;
-  color: black;
-}
-
-.wallet > h2 {
-  font-size: 1.8rem;
-}
-
-/* LOGO TRANSITION  */
-.logo-wrapper {
-  max-width: 30rem;
-}
-
-/* PROCESSSING / SUCCESS  */
-
-#processingMount {
-  width: 100%;
-  display: flex;
-  justify-content: end;
   align-items: center;
-}
-
-#processingMount > .info-container {
-  width: 40px;
-  height: 40px;
-}
-
-.info-transition {
-  min-height: 70vh;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
-.info-container {
+
+#msgMount.border {
+  border: 2px solid black !important;
+  padding: 2rem;
+}
+
+/* correct answer */
+#msgMount.correctAnswer {
   position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
+  overflow: hidden;
+
+  animation: correctGlow 1.2s ease-out;
 }
 
-.info-container img {
+#msgMount.correctAnswer::after {
+  content: '';
+
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  opacity: 0;
+  top: -30%;
+  left: -120%;
+
+  width: 70%;
+  height: 160%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 245, 180, 0.15) 35%,
+    rgba(255, 215, 90, 0.65) 50%,
+    rgba(255, 245, 180, 0.15) 65%,
+    transparent 100%
+  );
+
+  transform: rotate(15deg);
+
+  animation: goldSweep 1.2s ease-out forwards;
+
+  pointer-events: none;
 }
 
-.info-container img.processing-long {
-  opacity: 1;
-}
-
-/* Processing image: spin for 3s then fade out */
-.info-container img.processing {
-  opacity: 1;
-  animation:
-    spin 3s linear,
-    fadeOut 0.5s ease 3s forwards;
-}
-
-/* Complete image: show after 3s */
-.info-container img.complete {
-  animation: fadeIn 0.5s ease 3s forwards;
-}
-
-/* Processing image: spin infitintelys */
-.info-container img.processing-long {
-  opacity: 1;
-  animation: spin 3s infinite;
-}
-
-.info-container img.complete {
-}
-
-.info-container img.complete-ready {
-  animation: fadeIn 0.5s forwards;
-}
-
-/* Spin keyframes */
-@keyframes spin {
+@keyframes goldSweep {
   from {
-    transform: rotate(0deg);
+    left: -120%;
   }
+
   to {
-    transform: rotate(360deg);
+    left: 150%;
   }
 }
 
-/* Fade helpers */
+@keyframes correctGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+
+  40% {
+    box-shadow:
+      0 0 18px rgba(255, 215, 0, 0.35),
+      0 0 40px rgba(255, 215, 0, 0.18);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
 
 /* ANIMATION  */
 
@@ -760,73 +758,6 @@ main.decorative > h1 {
   font-size: 2rem;
 }
 
-/* BRAND  */
-
-.inline-accented-img {
-  position: relative;
-  display: inline-block;
-  animation: lockin-wrapper 0.8s ease-out forwards;
-}
-
-.inline-accented-img::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--purple);
-  transform: rotate(-5deg) translate(-1px, -1px);
-  z-index: -1;
-  animation: lockin-bg 0.8s ease-out forwards;
-}
-
-.inline-img-wrapper {
-  position: relative;
-  display: inline-block;
-  margin-block-end: 2rem;
-  margin-block-start: 2rem;
-}
-
-.inline-img-wrapper-start {
-  position: relative;
-  display: inline-block;
-  margin-block-end: 2rem;
-  margin-block-start: 2rem;
-}
-
-.inline-img-wrapper img {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.inline-img-wrapper img:first-child {
-  position: relative;
-  animation: none;
-  width: 100%;
-  height: auto;
-}
-
-.inline-img-wrapper img:last-child {
-  animation: fade2 4s forwards;
-}
-
-.inline-img-wrapper.final img:last-child {
-  animation: none;
-}
-
-@keyframes fade2 {
-  0%,
-  40% {
-    opacity: 0;
-  }
-  50%,
-  100% {
-    opacity: 1;
-  }
-}
-
 /* SEAl */
 
 .sealBtn-container {
@@ -834,7 +765,7 @@ main.decorative > h1 {
   animation: sealStamp 0.7s cubic-bezier(0.2, 1.2, 0.4, 1) forwards;
 }
 .sealBtn-container img {
-  width: 300px;
+  width: 200px;
   cursor: pointer;
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
 
@@ -858,7 +789,7 @@ main.decorative > h1 {
   }
 
   50% {
-    transform: scale(1.04) rotate(-1deg);
+    transform: scale(1.04) rotate(-3deg);
   }
 }
 
@@ -877,7 +808,7 @@ main.decorative > h1 {
   0% {
     opacity: 0;
 
-    transform: translateY(-80px) scale(1.4);
+    transform: translateY(-80px) scale(1.2);
   }
 
   60% {
@@ -985,7 +916,7 @@ body.moveOn main {
 
   p {
     font-size: 3rem;
-    line-height: 3rem;
+    line-height: 4rem;
   }
 
   .choice-item > span {
@@ -1007,13 +938,13 @@ body.moveOn main {
     gap: 3rem;
   }
 
-  header.standard > .logo-wrapper {
+  header.bevell > .logo-wrapper {
     max-width: 20%;
   }
-  header.standard > .title-wrapper > h1 {
+  header.bevell > .title-wrapper > h1 {
     font-size: clamp(1rem, 3.5vw, 6rem);
   }
-  header.standard > .title-wrapper > h2 {
+  header.bevell > .title-wrapper > h2 {
     font-size: clamp(1rem, 2.5vw, 6rem);
     font-weight: 400;
   }

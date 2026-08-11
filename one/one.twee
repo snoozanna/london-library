@@ -233,7 +233,8 @@ setup.addPlaceholder = () => {
 
 :: _templateIntro[nobr]
 <<addclass "body" "intro">>
-<main>
+<<include "bevelled-header">>
+<main class="intro">
 <div id="audio"></div>
     <div id="msgMount">
         <<if $pass>>
@@ -327,6 +328,13 @@ setup.addPlaceholder = () => {
     <span></span>
 </div>
 
+:: bevelled-header [nobr]
+<header class="bevell">
+<div class="bevell-container">
+    <img src="../assets/img/bevell.png" alt="bevel border"/>
+    
+</div>
+</header>
 
 
 :: intro1 [nobr]
@@ -344,47 +352,58 @@ setup.addPlaceholder = () => {
 
 <<timed 0.1s>>
     <<replace "#msgMount">>
-       <p> Welcome to the Arthur Conan Doyle Trail. </p>
-<p>You will be exploring the library with a group - do stay with them. </p>
+       <<type 60ms>>
+           <p> Welcome to the Arthur Conan Doyle Trail. </p>
+    <p>You will be exploring the library with a group - do stay with them. </p>
+       <</type>>
 
     <</replace>>
 <</timed>>
 <<timed 2s>>
     <<append "#msgMount">>
+        <<type 60ms>>
 <p>You should be able to hear some music - if not you should turn the volume up. </p>
+ <</type>>
     <</append>>
 <</timed>>
 
 <<timed 6s>>
     <<append "#msgMount">>
+        <<type 60ms>>
 <p>You will be asked to find information in the Library. </p>
 <p>We are only able to go on this trail if we are quiet throughout the Library.</p>
-
+ <</type>>
     <</append>>
 <</timed>>
 <<timed 8s>>
     <<append "#msgMount">>
+        <<type 60ms>>
 <p>There will be points where you will need to wait for confirmation from your group leader to move on – as we are playing through this as a group and you might need to wait for others to catch up.  </p>
+ <</type>>
     <</append>>
 <</timed>>
 <<timed 10s>>
     <<append "#msgMount">>
+        <<type 60ms>>
 <p>Your screen will show an image with a London Library seal on it – when you see this wait for the thumbs up from your handler before pressing the seal.. </p>
+ <</type>>
     <</append>>
 <</timed>>
 <<timed 12s>>
     <<append "#msgMount">>
+         <<type 60ms>>
 <p>Let’s try that now. </p>
+ <</type>>
     <</append>>
+  
 <</timed>>
 
-<<timed 12s>>
+  <<timed 48s>>
     <<append "#msgMount">>
-
-    <<include "sealButton">>
-
+        <<include "sealButton">>
     <</append>>
 <</timed>>
+
 
 
 
@@ -400,17 +419,20 @@ setup.addPlaceholder = () => {
 
 :: intro2-text [nobr]
 <<timed 0.1s>>
+     <<type 60ms>>
     <p>Great, let’s begin in the Issue Hall. </p>
-
+    <</type>>
 <</timed>>
 
 <<timed 2s>>
+     <<type 60ms>>
     <p>When there, click the seal</p>
+    <</type>>
 <</timed>>
 
 
-<<timed 3s>>
-    <<append "#btnContainer">>
+<<timed 7s>>
+    <<append "#msgMount">>
   <<include "sealButton">>
         /* <<include "navbuttons">> */
     <</append>>
@@ -429,14 +451,22 @@ setup.addPlaceholder = () => {
   <<timed 0.1s>>
     <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto1.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
-<p class="bold">Scene 1 </p>
+
+<h1 class="bold center">Scene 1 </h1>
+
 <div id="msgMount">
 <div class="inline-img-wrapper gramophone">
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
 <<timed 98s>>
+    
     <<replace "#msgMount">>
+        <<addclass "main" "question">>
+        <<addclass "#msgMount" "border">>
+    <div class="bevell-container">
+    <img src="../assets/img/bevell.png" alt="bevel border"/>
+</div>
     <p class="bold">What is the name of the city on the dial of the library clock?</p>
     <<include "pwScene1">>
     <</replace>>
@@ -456,7 +486,7 @@ setup.addPlaceholder = () => {
     <<if $codeword is "LONDON">>
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
-     
+     <<addclass "#msgMount" "correctAnswer">>
       <<timed 3s>><<goto $nextpass>><</timed>>
     <<elseif $codeword isnot "">>
       /* Incorrect (non-empty) */
@@ -497,7 +527,7 @@ setup.addPlaceholder = () => {
   <<timed 0.1s>>
     <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto2.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
-<p class="bold">Scene 2 </p>
+<h1 class="bold center">Scene 2 </h1>
 <div id="msgMount">
 <div class="inline-img-wrapper gramophone">
 <img src="../assets/img/grammaphone.gif">
@@ -505,8 +535,8 @@ setup.addPlaceholder = () => {
 </div>
 <<timed 54s>>
     <<replace "#msgMount">>
-   <p> Head up the stairs with the green carpet – walk up two flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
-<p>When there click your handler will give you permission to press below</p>
+   <p class="center"> Head up the stairs with the green carpet – walk up two flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
+<p class="center">When there click your handler will give you permission to press below</p>
 
 <<timed 5s>>
     <<append "#btnContainer">>
@@ -536,8 +566,8 @@ setup.addPlaceholder = () => {
     <<if $codeword is "STRAND MAGAZINE">>
       <<replace "#coderesult">><span>Correct!</span>
       <</replace>>
-     
-       <<timed 2s>>
+      <<addclass "#msgMount" "correctAnswer">>
+       <<timed 3s>>
         <<goto $nextpass>>
         <</timed>>
 
@@ -567,14 +597,19 @@ setup.addPlaceholder = () => {
 <<timed 0.1s>>
     <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto3.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
-<p class="bold">Scene 3 </p>
+<h1 class="bold center">Scene 3 </h1>
 <div id="msgMount">
 <div class="inline-img-wrapper gramophone">
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
 <<timed 44s>>
-    <<replace "#msgMount">>
+     <<replace "#msgMount">>
+        <<addclass "main" "question">>
+        <<addclass "#msgMount" "border">>
+    <div class="bevell-container">
+    <img src="../assets/img/bevell.png" alt="bevel border"/>
+</div>
     <p class="bold">Can you tell me the name of the magazine that publishes his short stories? </p>
     <<include "pwScene3">>
     <</replace>>
@@ -597,7 +632,7 @@ setup.addPlaceholder = () => {
 :: scene4 [nobr]
 <<set $prevpass to "scene3-seal">>
 <<set $pass to "scene4">>
-<<set $nextpass to "">>
+<<set $nextpass to "end">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "scene4-text">>
@@ -609,25 +644,52 @@ setup.addPlaceholder = () => {
 <<timed 0.1s>>
     <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto4.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
-<p class="bold">Scene 4 </p>
+<h1 class="bold center">Scene 4 </h1>
 <div id="msgMount">
 <div class="inline-img-wrapper gramophone">
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
 <<timed 56s>>
-    <<append "#msgMount">>
-<p>Head back down one flight of stairs to the Green Door with the sign: ‘Back Stacks: Level 4’</p>
-
-<p>You are looking for Geology/Science.</p> 
-
-<p>When there, find ‘Man as a Geological Agent’ – it might be closer to the ‘Gold’ Section. </p>
-<p>When you find it, put your notepad on the book.</p>
-
-    <</append>>
+<<goto $nextpass>>
 <</timed>>
 </main>
-<<include "navbuttonsend">>
+<<include "navbuttonsb">>
+
+
+:: end [nobr]
+<<set $prevpass to "scene4">>
+<<set $pass to "end">>
+<<set $nextpass to "end">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateIntro">>
+
+:: end-text [nobr]
+<<timed 0.1s>>
+     <<type 60ms>>
+    <p>Head back down one flight of stairs to the Green Door with the sign: ‘Back Stacks: Level 4’</p>
+    <</type>>
+<</timed>>
+
+<<timed 2s>>
+     <<type 60ms>>
+   <p>You are looking for Geology/Science.</p> 
+    <</type>>
+<</timed>>
+
+<<timed 4s>>
+     <<type 60ms>>
+   <p>When there, find ‘Man as a Geological Agent’ – it might be closer to the ‘Gold’ Section. </p>
+    <</type>>
+<</timed>>
+
+<<timed 4s>>
+     <<type 60ms>>
+
+<p>When you find it, put your notepad on the book.</p>
+    <</type>>
+<</timed>>
 
 
 
