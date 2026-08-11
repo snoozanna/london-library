@@ -304,8 +304,7 @@ setup.addPlaceholder = () => {
 /* <<include "header">> */
 <<addclass "body" "moveOn">>
 <main class="moveOn">
-<div class="paper-text-container" id="textContainer">
-    <img src="../assets/img/blankpaper.png" alt="blank paper"/>
+<div id="textContainer">
 
 </div>
  <div class="btn-container" id="btnContainer">
@@ -506,13 +505,16 @@ setup.addPlaceholder = () => {
 <<set $pass to "scene1-seal">>
 <<set $nextpass to "scene2">>
 <<audio ":all" "stop">>
+
 <<include "_templateSeal">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-        <h1>London</h1>
+        <img src="assets/img/London4.gif" alt="London"/>
         <</append>>
     <</timed>>
+
+   
 
 
 :: scene2 [nobr]
@@ -624,7 +626,8 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-        <h1>Strand Magazine</h1>
+               <img src="assets/img/strand1.gif" alt="Strand Magazine"/>
+
         <</append>>
     <</timed>>
 
