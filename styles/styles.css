@@ -493,6 +493,11 @@ p.center {
   text-align: center;
 }
 
+p.handwritten {
+  font-family: var(--font-decorative);
+  font-size: 4rem;
+}
+
 span.accent {
   font-family: var(--font-headings);
   font-weight: 700;

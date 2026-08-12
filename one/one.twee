@@ -95,13 +95,6 @@ setup.addPlaceholder = () => {
 <<cacheaudio "scribble" "../assets/audio/v3_pencilscribble.mp3">>
 
 
-<script>
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = "../assets/img/leadImage.png";
-    document.head.appendChild(link);
-</script>
 
 
 
@@ -180,22 +173,7 @@ setup.addPlaceholder = () => {
 
 
 
-:: footeroptionappears[nobr]
-<<set $showWallet to false>>
-<footer class="grid-item footer">
-  <<link [img[../assets/img/back-black.png]]>>
-        <<goto $prevpass>>
-    <</link>>
-  /* <<link "W">>
-        <<set $showWallet to true>>
-        <<goto "wallet">>
-        <</link>> */
-           /* <<link [img[../assets/img/for-black.png]]>>
-        <<goto $nextpass>>
-    <</link>> */
-    <div id="nextButtonContainer">
-     </div>
-</footer>
+
 
 
 
@@ -277,35 +255,6 @@ setup.addPlaceholder = () => {
 </main>
 <<include "navbuttonsb">>
 
-
-:: sealButton [nobr]
-<div class="sealBtn-container">
-    <<button [img["../assets/img/LL_wax_seal.png"]]>>
-        <<audio "seal" play>>
-        <<timed 1s>>
-      <<goto $nextpass>>
-      <</timed>>
-        <</button>>
-        </div>
-
-
-:: _templateMoveOn [nobr]
-/* <<include "header">> */
-<<addclass "body" "moveOn">>
-<main>
- <div class="btn-container" id="btnContainer">
-</div>
-</main>
-<<timed $btnAppearTime>>
-    <<append "#btnContainer">>
-    <<button "MOVE ON">>
-            <<goto $nextpass>>
-        <</button>>
-     
-    <</append>>
-<</timed>>
-<<include "navbuttonsb">>
-
 :: _templateSeal[nobr]
 /* <<include "header">> */
 <<addclass "body" "moveOn">>
@@ -319,19 +268,19 @@ setup.addPlaceholder = () => {
 </main>
 <<include "navbuttonsb">>
 
-:: dust [nobr]
-<div class="dust">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+
+:: sealButton [nobr]
+<div class="sealBtn-container">
+    <<button [img["../assets/img/LL_wax_seal.png"]]>>
+        <<audio "seal" play>>
+        <<timed 1s>>
+      <<goto $nextpass>>
+      <</timed>>
+        <</button>>
+        </div>
+
+
+
 
 :: bevelled-header [nobr]
 <header class="bevell">
