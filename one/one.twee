@@ -91,10 +91,9 @@ setup.addPlaceholder = () => {
 } 
 
 :: StoryInit
-<<cacheaudio "success" "../assets/sound/uploadcomplete.mp3">>
-<<cacheaudio "notification" "../assets/sound/Notification.wav">>
-<<cacheaudio "ping" "../assets/sound/ping1.mp3">>
-<<cacheaudio "ticker" "../assets/sound/ticker.mp3">>
+<<cacheaudio "seal" "../assets/audio/v3_waxseal.mp3">>
+<<cacheaudio "scribble" "../assets/audio/v3_pencilscribble.mp3">>
+
 
 <script>
     const link = document.createElement("link");
@@ -248,7 +247,11 @@ setup.addPlaceholder = () => {
         </div>
   
 </main> 
-<<include "navbuttonsb">>
+<<if State.passage is "end">>
+    <<include "navbuttonsend">>
+<<else>>
+    <<include "navbuttonsb">>
+<</if>>
 
 :: _templateStory [nobr]
 
@@ -278,7 +281,10 @@ setup.addPlaceholder = () => {
 :: sealButton [nobr]
 <div class="sealBtn-container">
     <<button [img["../assets/img/LL_wax_seal.png"]]>>
+        <<audio "seal" play>>
+        <<timed 1s>>
       <<goto $nextpass>>
+      <</timed>>
         <</button>>
         </div>
 
@@ -346,7 +352,7 @@ setup.addPlaceholder = () => {
 
 :: intro1-text [nobr]
 <<timed 0.2s>>
-    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="assets/audio/rubieintromusic.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
 
 <<timed 0.1s>>
@@ -413,7 +419,7 @@ setup.addPlaceholder = () => {
 <<set $pass to "intro2">>
 <<set $nextpass to "scene1">>
 <<audio ":all" "stop">>
-<audio src="../assets/voiceover/strongertogethervo_0_3.mp3" autoplay>Audio is not supported on your device</audio>
+
 <<include "_templateIntro">>
 
 :: intro2-text [nobr]
@@ -448,7 +454,7 @@ setup.addPlaceholder = () => {
 
 :: scene1-text [nobr]
   <<timed 0.1s>>
-    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto1.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/v3_SCENE_1.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
 
 <h1 class="bold center">Scene 1 </h1>
@@ -505,6 +511,7 @@ setup.addPlaceholder = () => {
 <<set $pass to "scene1-seal">>
 <<set $nextpass to "scene2">>
 <<audio ":all" "stop">>
+<<audio "scribble" play>>
 
 <<include "_templateSeal">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
@@ -520,14 +527,14 @@ setup.addPlaceholder = () => {
 :: scene2 [nobr]
 <<set $prevpass to "scene1">>
 <<set $pass to "scene2">>
-<<set $nextpass to "scene3">>
+<<set $nextpass to "intro-scene3">>
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<include "_templateStory">>
 
 :: scene2-text [nobr]
   <<timed 0.1s>>
-    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto2.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/v3_SCENE_2.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
 <h1 class="bold center">Scene 2 </h1>
 <div id="msgMount">
@@ -536,19 +543,7 @@ setup.addPlaceholder = () => {
 </div>
 </div>
 <<timed 54s>>
-    <<replace "#msgMount">>
-   <p class="center"> Head up the stairs with the green carpet – walk up two flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
-<p class="center">When there click your handler will give you permission to press below</p>
-
-<<timed 5s>>
-    <<append "#btnContainer">>
-    <<button "Next">>
-            <<goto $nextpass>>
-        <</button>>
-    <</append>>
-    
-<</timed>>
-    <</replace>>
+   <<goto $nextpass>>
 <</timed>>
 
 
@@ -586,8 +581,34 @@ setup.addPlaceholder = () => {
 
 <<done>><<set $e to setup.addPlaceholder()>><</done>>
 
-:: scene3 [nobr]
+:: intro-scene3 [nobr]
 <<set $prevpass to "scene2">>
+<<set $pass to "intro-scene3">>
+<<set $nextpass to "scene3">>
+<<audio ":all" "stop">>
+<audio src="" autoplay>Audio is not supported on your device</audio>
+<<include "_templateIntro">>
+
+:: intro-scene3-text [nobr]
+<<timed 0.1s>>
+     <<type 60ms>>
+    <p> Head up the stairs with the green carpet – walk up two flights of stairs – on the right hand side until you get to the entrance to the Reading Room.</p>
+    <</type>>
+<</timed>>
+
+<<timed 5s>>
+     <<type 60ms>>
+   <p >When there click your handler will give you permission to press below.</p>
+    <<button "Next">>
+            <<goto $nextpass>>
+        <</button>>
+    <</type>>
+<</timed>>
+
+
+
+:: scene3 [nobr]
+<<set $prevpass to "intro-scene3">>
 <<set $pass to "scene3">>
 <<set $nextpass to "scene3-seal">>
 <<audio ":all" "stop">>
@@ -597,7 +618,7 @@ setup.addPlaceholder = () => {
 :: scene3-text [nobr]
 
 <<timed 0.1s>>
-    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto3.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/v3_SCENE_3.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
 <h1 class="bold center">Scene 3 </h1>
 <div id="msgMount">
@@ -621,7 +642,9 @@ setup.addPlaceholder = () => {
 <<set $prevpass to "scene3">>
 <<set $pass to "scene3-seal">>
 <<set $nextpass to "scene4">>
-<<addclass "body" "moveOn">>
+<<audio ":all" "stop">>
+<<audio "scribble" play>>
+
 <<include "_templateSeal">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
@@ -645,7 +668,7 @@ setup.addPlaceholder = () => {
 <div id="audio"></div>
     <div id="msgMount"> </div>
 <<timed 0.1s>>
-    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/LL_Proto4.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/v3_SCENE_4.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
 <h1 class="bold center">Scene 4 </h1>
 <div id="msgMount">

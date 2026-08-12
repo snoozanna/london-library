@@ -167,10 +167,9 @@ setup.addPlaceholder = () => {
         textbox.setAttribute("placeholder", "Type here");
     }
 
-}</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;cacheaudio &quot;success&quot; &quot;../assets/sound/uploadcomplete.mp3&quot;&gt;&gt;
-&lt;&lt;cacheaudio &quot;notification&quot; &quot;../assets/sound/Notification.wav&quot;&gt;&gt;
-&lt;&lt;cacheaudio &quot;ping&quot; &quot;../assets/sound/ping1.mp3&quot;&gt;&gt;
-&lt;&lt;cacheaudio &quot;ticker&quot; &quot;../assets/sound/ticker.mp3&quot;&gt;&gt;
+}</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;cacheaudio &quot;seal&quot; &quot;../assets/audio/v3_waxseal.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;scribble&quot; &quot;../assets/audio/v3_pencilscribble.mp3&quot;&gt;&gt;
+
 
 &lt;script&gt;
     const link = document.createElement(&quot;link&quot;);
@@ -276,7 +275,11 @@ setup.addPlaceholder = () => {
         &lt;/div&gt;
   
 &lt;/main&gt; 
-&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="_templateStory" tags="nobr" position="225,225" size="100,100">&lt;main&gt;
+&lt;&lt;if State.passage is &quot;end&quot;&gt;&gt;
+    &lt;&lt;include &quot;navbuttonsend&quot;&gt;&gt;
+&lt;&lt;else&gt;&gt;
+    &lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="_templateStory" tags="nobr" position="225,225" size="100,100">&lt;main&gt;
 &lt;div id=&quot;audio&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;msgMount&quot;&gt; &lt;/div&gt;
         &lt;&lt;if $pass&gt;&gt;
@@ -298,7 +301,10 @@ setup.addPlaceholder = () => {
 &lt;/main&gt;
 &lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="sealButton" tags="nobr" position="350,225" size="100,100">&lt;div class=&quot;sealBtn-container&quot;&gt;
     &lt;&lt;button [img[&quot;../assets/img/LL_wax_seal.png&quot;]]&gt;&gt;
+        &lt;&lt;audio &quot;seal&quot; play&gt;&gt;
+        &lt;&lt;timed 1s&gt;&gt;
       &lt;&lt;goto $nextpass&gt;&gt;
+      &lt;&lt;/timed&gt;&gt;
         &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="_templateMoveOn" tags="nobr" position="475,225" size="100,100">/* &lt;&lt;include &quot;header&quot;&gt;&gt; */
 &lt;&lt;addclass &quot;body&quot; &quot;moveOn&quot;&gt;&gt;
@@ -345,7 +351,7 @@ setup.addPlaceholder = () => {
 &lt;&lt;set $nextpass to &quot;intro2&quot;&gt;&gt;
 
 &lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="intro1-text" tags="nobr" position="1100,225" size="100,100">&lt;&lt;timed 0.2s&gt;&gt;
-    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;assets/audio/rubieintromusic.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 
 &lt;&lt;timed 0.1s&gt;&gt;
@@ -404,7 +410,7 @@ setup.addPlaceholder = () => {
 &lt;&lt;set $pass to &quot;intro2&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene1&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
-&lt;audio src=&quot;../assets/voiceover/strongertogethervo_0_3.mp3&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
+
 &lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="intro2-text" tags="nobr" position="100,350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
      &lt;&lt;type 60ms&gt;&gt;
     &lt;p&gt;Great, let’s begin in the Issue Hall. &lt;/p&gt;
@@ -429,7 +435,7 @@ setup.addPlaceholder = () => {
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 
 &lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="scene1-text" tags="nobr" position="350,350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
-    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto1.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/v3_SCENE_1.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 
 &lt;h1 class=&quot;bold center&quot;&gt;Scene 1 &lt;/h1&gt;
@@ -480,6 +486,7 @@ setup.addPlaceholder = () => {
 &lt;&lt;set $pass to &quot;scene1-seal&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene2&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
+&lt;&lt;audio &quot;scribble&quot; play&gt;&gt;
 
 &lt;&lt;include &quot;_templateSeal&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
@@ -489,11 +496,11 @@ setup.addPlaceholder = () => {
         &lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="scene2" tags="nobr" position="725,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene1&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene2&quot;&gt;&gt;
-&lt;&lt;set $nextpass to &quot;scene3&quot;&gt;&gt;
+&lt;&lt;set $nextpass to &quot;intro-scene3&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
 &lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="scene2-text" tags="nobr" position="850,350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
-    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto2.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/v3_SCENE_2.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 &lt;h1 class=&quot;bold center&quot;&gt;Scene 2 &lt;/h1&gt;
 &lt;div id=&quot;msgMount&quot;&gt;
@@ -502,19 +509,7 @@ setup.addPlaceholder = () => {
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;&lt;timed 54s&gt;&gt;
-    &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
-   &lt;p class=&quot;center&quot;&gt; Head up the stairs with the green carpet – walk up two flights of stairs – on the right hand side until you get to the entrance to the Reading Room.&lt;/p&gt;
-&lt;p class=&quot;center&quot;&gt;When there click your handler will give you permission to press below&lt;/p&gt;
-
-&lt;&lt;timed 5s&gt;&gt;
-    &lt;&lt;append &quot;#btnContainer&quot;&gt;&gt;
-    &lt;&lt;button &quot;Next&quot;&gt;&gt;
-            &lt;&lt;goto $nextpass&gt;&gt;
-        &lt;&lt;/button&gt;&gt;
-    &lt;&lt;/append&gt;&gt;
-    
-&lt;&lt;/timed&gt;&gt;
-    &lt;&lt;/replace&gt;&gt;
+   &lt;&lt;goto $nextpass&gt;&gt;
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="pwScene3" tags="nobr" position="975,350" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
 
 &lt;div class=&quot;codeinput&quot;&gt;
@@ -544,13 +539,31 @@ setup.addPlaceholder = () => {
 &lt;br/&gt;
 &lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;
 
-&lt;&lt;done&gt;&gt;&lt;&lt;set $e to setup.addPlaceholder()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="scene3" tags="nobr" position="1100,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene2&quot;&gt;&gt;
+&lt;&lt;done&gt;&gt;&lt;&lt;set $e to setup.addPlaceholder()&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="intro-scene3" tags="nobr" position="1100,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene2&quot;&gt;&gt;
+&lt;&lt;set $pass to &quot;intro-scene3&quot;&gt;&gt;
+&lt;&lt;set $nextpass to &quot;scene3&quot;&gt;&gt;
+&lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
+&lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
+&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="intro-scene3-text" tags="nobr" position="1225,350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+     &lt;&lt;type 60ms&gt;&gt;
+    &lt;p&gt; Head up the stairs with the green carpet – walk up two flights of stairs – on the right hand side until you get to the entrance to the Reading Room.&lt;/p&gt;
+    &lt;&lt;/type&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+
+&lt;&lt;timed 5s&gt;&gt;
+     &lt;&lt;type 60ms&gt;&gt;
+   &lt;p &gt;When there click your handler will give you permission to press below.&lt;/p&gt;
+    &lt;&lt;button &quot;Next&quot;&gt;&gt;
+            &lt;&lt;goto $nextpass&gt;&gt;
+        &lt;&lt;/button&gt;&gt;
+    &lt;&lt;/type&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="scene3" tags="nobr" position="100,475" size="100,100">&lt;&lt;set $prevpass to &quot;intro-scene3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene3&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene3-seal&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="scene3-text" tags="nobr" position="1225,350" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
-    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto3.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+&lt;&lt;include &quot;_templateStory&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="scene3-text" tags="nobr" position="225,475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/v3_SCENE_3.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 &lt;h1 class=&quot;bold center&quot;&gt;Scene 3 &lt;/h1&gt;
 &lt;div id=&quot;msgMount&quot;&gt;
@@ -568,10 +581,12 @@ setup.addPlaceholder = () => {
     &lt;p class=&quot;bold&quot;&gt;Can you tell me the name of the magazine that publishes his short stories? &lt;/p&gt;
     &lt;&lt;include &quot;pwScene3&quot;&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="scene3-seal" tags="nobr" position="100,475" size="100,100">&lt;&lt;set $prevpass to &quot;scene3&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="scene3-seal" tags="nobr" position="350,475" size="100,100">&lt;&lt;set $prevpass to &quot;scene3&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene3-seal&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene4&quot;&gt;&gt;
-&lt;&lt;addclass &quot;body&quot; &quot;moveOn&quot;&gt;&gt;
+&lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
+&lt;&lt;audio &quot;scribble&quot; play&gt;&gt;
+
 &lt;&lt;include &quot;_templateSeal&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
 &lt;&lt;timed 0.1s&gt;&gt;
@@ -579,16 +594,16 @@ setup.addPlaceholder = () => {
                &lt;img src=&quot;assets/img/mag1.gif&quot; alt=&quot;Strand Magazine&quot;/&gt;
 
         &lt;&lt;/append&gt;&gt;
-    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="scene4" tags="nobr" position="225,475" size="100,100">&lt;&lt;set $prevpass to &quot;scene3-seal&quot;&gt;&gt;
+    &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="scene4" tags="nobr" position="475,475" size="100,100">&lt;&lt;set $prevpass to &quot;scene3-seal&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene4&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;end&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;scene4-text&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="scene4-text" tags="nobr" position="350,475" size="100,100">&lt;main&gt;
+&lt;&lt;include &quot;scene4-text&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="scene4-text" tags="nobr" position="600,475" size="100,100">&lt;main&gt;
 &lt;div id=&quot;audio&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;msgMount&quot;&gt; &lt;/div&gt;
 &lt;&lt;timed 0.1s&gt;&gt;
-    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/LL_Proto4.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
+    &lt;&lt;append &quot;#audio&quot;&gt;&gt;&lt;&lt;if $userchoices.audioOn is true&gt;&gt;&lt;audio src=&quot;../assets/audio/v3_SCENE_4.mp3&quot; autoplay id=&quot;bgAudio&quot;&gt;Audio is not supported on your device&lt;/audio&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/append&gt;&gt;
     &lt;&lt;/timed&gt;&gt;
 &lt;h1 class=&quot;bold center&quot;&gt;Scene 4 &lt;/h1&gt;
 &lt;div id=&quot;msgMount&quot;&gt;
@@ -600,12 +615,12 @@ setup.addPlaceholder = () => {
 &lt;&lt;goto $nextpass&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
 &lt;/main&gt;
-&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="end" tags="nobr" position="475,475" size="100,100">&lt;&lt;set $prevpass to &quot;scene4&quot;&gt;&gt;
+&lt;&lt;include &quot;navbuttonsb&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="end" tags="nobr" position="725,475" size="100,100">&lt;&lt;set $prevpass to &quot;scene4&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;end&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;end&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="end-text" tags="nobr" position="600,475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
+&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="end-text" tags="nobr" position="850,475" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
      &lt;&lt;type 60ms&gt;&gt;
     &lt;p&gt;Head back down one flight of stairs to the Green Door with the sign: ‘Back Stacks: Level 4’&lt;/p&gt;
     &lt;&lt;/type&gt;&gt;
@@ -628,7 +643,7 @@ setup.addPlaceholder = () => {
 
 &lt;p&gt;When you find it, put your notepad on the book.&lt;/p&gt;
     &lt;&lt;/type&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="credits" tags="nobr" position="725,475" size="100,100">&lt;&lt;set $prevpass to &quot;52_story&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="credits" tags="nobr" position="975,475" size="100,100">&lt;&lt;set $prevpass to &quot;52_story&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;credits&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;credits&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
