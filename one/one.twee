@@ -301,7 +301,7 @@ setup.addPlaceholder = () => {
 
 :: intro1-text [nobr]
 <<timed 0.2s>>
-    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="assets/audio/rubieintromusic.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
+    <<append "#audio">><<if $userchoices.audioOn is true>><audio src="../assets/audio/rubieintromusic.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>><</append>>
     <</timed>>
 
 <<timed 0.1s>>
