@@ -1077,7 +1077,7 @@ setup.addPlaceholder = () => {
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
-<<timed 177s>>
+<<timed 179s>>
 <<goto $nextpass>>
 <</timed>>
 </main>
