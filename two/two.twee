@@ -337,7 +337,8 @@ setup.addPlaceholder = () => {
 :: intro-scene6-text [nobr]
 <<timed 1s>>
 <<type 60ms>>
-    <p> Head back out to the green carpeted staircase and walk up the stairs to Level 2 – you’ll go up 5 flights of stairs. When there wait on the landing for the next instruction.</p>
+    <p> Head back out to the green carpeted staircase and walk up the stairs to Level 2 – you’ll go up 5 flights of stairs.<p>
+    <p> When there wait on the landing for the next instruction.</p>
  
         <<include "sealButton">>
     <</type>>
@@ -465,7 +466,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-        <img src="assets/img/london1.gif" alt="London"/>
+        <img src="../assets/img/Times1.gif" alt="TIMES 17-10-41"/>
         <</append>>
     <</timed>>
 
@@ -655,7 +656,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-        <img src="assets/img/london1.gif" alt="London"/>
+        <img src="../assets/img/mary-riot1.gif" alt="Mary Riot"/>
         <</append>>
     <</timed>>
 
@@ -733,7 +734,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-        <img src="assets/img/london1.gif" alt="London"/>
+        <img src="../assets/img/Moriarty1.gif" alt="Moriarty"/>
         <</append>>
     <</timed>>
 
@@ -1052,7 +1053,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-               <img src="assets/img/mag1.gif" alt="Strand Magazine"/>
+               <img src="../assets/img/Annie1.gif" alt="Annie"/>
 
         <</append>>
     <</timed>>
@@ -1078,7 +1079,7 @@ setup.addPlaceholder = () => {
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
-<<timed 56s>>
+<<timed 177s>>
 <<goto $nextpass>>
 <</timed>>
 </main>
@@ -1088,17 +1089,19 @@ setup.addPlaceholder = () => {
 
 
 :: end [nobr]
-<<set $prevpass to "scene4">>
+<<set $prevpass to "scene13">>
 <<set $pass to "end">>
 <<set $nextpass to "end">>
+<<if $userchoices.audioOn is true>><audio src="../assets/audio/rubieintromusic.mp3" autoplay id="bgAudio">Audio is not supported on your device</audio><</if>>
+
 <<audio ":all" "stop">>
 <audio src="" autoplay>Audio is not supported on your device</audio>
-<<include "_templateIntro">>
+<main>
+<<include "end-text">>
+</main>
+<<include "navbuttonsend">>
 
 
 :: end-text [nobr]
-<<timed 0.1s>>
-     <<type 60ms>>
    <div class="final-seal-container"> <img src="../assets/img/LL_wax_seal.png"></div>
-    <</type>>
-<</timed>>
+

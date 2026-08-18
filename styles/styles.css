@@ -1158,3 +1158,12 @@ body::before {
     transform: translateY(-2px) rotate(0.5deg);
   }
 }
+
+.final-seal-container {
+  max-width: 300px;
+  margin: auto;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
