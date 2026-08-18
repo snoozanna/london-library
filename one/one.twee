@@ -466,7 +466,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-        <img src="assets/img/london1.gif" alt="London"/>
+        <img src="../assets/img/london1.gif" alt="London"/>
         <</append>>
     <</timed>>
 
@@ -491,7 +491,7 @@ setup.addPlaceholder = () => {
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
-<<timed 54s>>
+<<timed 60s>>
    <<goto $nextpass>>
 <</timed>>
 
@@ -575,7 +575,7 @@ setup.addPlaceholder = () => {
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
-<<timed 44s>>
+<<timed 48s>>
      <<replace "#msgMount">>
         <<addclass "main" "question">>
         <<addclass "#msgMount" "border">>
@@ -598,7 +598,7 @@ setup.addPlaceholder = () => {
 <audio src="" autoplay>Audio is not supported on your device</audio>
 <<timed 0.1s>>
     <<append "#textContainer">>
-               <img src="assets/img/mag1.gif" alt="Strand Magazine"/>
+               <img src="../assets/img/mag1.gif" alt="Strand Magazine"/>
 
         <</append>>
     <</timed>>
@@ -625,7 +625,7 @@ setup.addPlaceholder = () => {
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
-<<timed 56s>>
+<<timed 47s>>
 <<goto $nextpass>>
 <</timed>>
 </main>

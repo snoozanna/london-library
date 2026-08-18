@@ -353,7 +353,7 @@ setup.addPlaceholder = () => {
 &lt;img src=&quot;../assets/img/grammaphone.gif&quot;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;timed 17s&gt;&gt;
+&lt;&lt;timed 18s&gt;&gt;
 &lt;&lt;goto $nextpass&gt;&gt;
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="intro-scene7" tags="nobr" position="225,350" size="100,100">&lt;&lt;set $prevpass to &quot;scene6&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;intro-scene7&quot;&gt;&gt;
@@ -658,8 +658,8 @@ setup.addPlaceholder = () => {
 &lt;/div&gt;
 &lt;&lt;timed 38s&gt;&gt;
     &lt;&lt;replace &quot;#msgMount&quot;&gt;&gt;
-     &lt;p class=&quot;bold&quot;&gt;TBC&lt;/p&gt;
-   /* &lt;&lt;include &quot;pwScene11&quot;&gt;&gt; */
+
+   &lt;&lt;goto $nextpass&gt;&gt;
     &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="intro-scene12" tags="nobr" position="725,600" size="100,100">&lt;&lt;set $prevpass to &quot;scene11&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;intro-scene12&quot;&gt;&gt;
@@ -699,6 +699,7 @@ setup.addPlaceholder = () => {
     &lt;&lt;button &quot;Move on&quot;&gt;&gt;
             &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
+        &lt;/p&gt;
     &lt;&lt;/type&gt;&gt;
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="intro-scene12a" tags="nobr" position="975,600" size="100,100">&lt;&lt;set $prevpass to &quot;intro-scene12&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;intro-scene12a&quot;&gt;&gt;
@@ -727,6 +728,7 @@ setup.addPlaceholder = () => {
 &lt;&lt;timed 8s&gt;&gt;
      &lt;&lt;type 60ms&gt;&gt;
    &lt;p&gt;You might need to go up the staircase.
+   &lt;br/&gt;
     &lt;&lt;button &quot;Next&quot;&gt;&gt;
             &lt;&lt;goto $nextpass&gt;&gt;
         &lt;&lt;/button&gt;&gt;
@@ -750,13 +752,7 @@ setup.addPlaceholder = () => {
 &lt;&lt;set $nextpass to &quot;scene12&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
 &lt;audio src=&quot;&quot; autoplay&gt;Audio is not supported on your device&lt;/audio&gt;
-&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="intro-scene12c-text" tags="nobr" position="350,725" size="100,100">&lt;&lt;timed 0.1s&gt;&gt;
-     &lt;&lt;type 60ms&gt;&gt;
-    &lt;p&gt; ENVELOPE: MADAME DE TENCIN &lt;/p&gt;
-    &lt;&lt;/type&gt;&gt;
-&lt;&lt;/timed&gt;&gt;
-
-&lt;&lt;timed 2s&gt;&gt;
+&lt;&lt;include &quot;_templateIntro&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="intro-scene12c-text" tags="nobr" position="350,725" size="100,100">&lt;&lt;timed 2s&gt;&gt;
      &lt;&lt;include &quot;sealButton&quot;&gt;&gt;
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="pwScene12a" tags="nobr" position="475,725" size="100,100">&lt;&lt;set $codeword to &quot;&quot;&gt;&gt;  /* ensure it&#39;s blank so the placeholder shows */
 
@@ -783,7 +779,7 @@ setup.addPlaceholder = () => {
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;br/&gt;
-&lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="scene12" tags="nobr" position="600,725" size="100,100">&lt;&lt;set $prevpass to &quot;intro-scene12b&quot;&gt;&gt;
+&lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="scene12" tags="nobr" position="600,725" size="100,100">&lt;&lt;set $prevpass to &quot;intro-scene12c&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene12&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;intro-scene13&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;
@@ -884,7 +880,7 @@ setup.addPlaceholder = () => {
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;br/&gt;
-&lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="scene13-seal" tags="nobr" position="100,850" size="100,100">&lt;&lt;set $prevpass to &quot;scene3&quot;&gt;&gt;
+&lt;div id=&quot;coderesult&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="scene13-seal" tags="nobr" position="100,850" size="100,100">&lt;&lt;set $prevpass to &quot;intro-scene13&quot;&gt;&gt;
 &lt;&lt;set $pass to &quot;scene13-seal&quot;&gt;&gt;
 &lt;&lt;set $nextpass to &quot;scene13&quot;&gt;&gt;
 &lt;&lt;audio &quot;:all&quot; &quot;stop&quot;&gt;&gt;

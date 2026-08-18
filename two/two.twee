@@ -367,7 +367,7 @@ setup.addPlaceholder = () => {
 <img src="../assets/img/grammaphone.gif">
 </div>
 </div>
-<<timed 17s>>
+<<timed 18s>>
 <<goto $nextpass>>
 <</timed>>
 
@@ -760,8 +760,8 @@ setup.addPlaceholder = () => {
 </div>
 <<timed 38s>>
     <<replace "#msgMount">>
-     <p class="bold">TBC</p>
-   /* <<include "pwScene11">> */
+
+   <<goto $nextpass>>
     <</replace>>
 <</timed>>
 
@@ -808,6 +808,7 @@ setup.addPlaceholder = () => {
     <<button "Move on">>
             <<goto $nextpass>>
         <</button>>
+        </p>
     <</type>>
 <</timed>>
 
@@ -843,6 +844,7 @@ setup.addPlaceholder = () => {
 <<timed 8s>>
      <<type 60ms>>
    <p>You might need to go up the staircase.
+   <br/>
     <<button "Next">>
             <<goto $nextpass>>
         <</button>>
@@ -879,11 +881,7 @@ setup.addPlaceholder = () => {
 <<include "_templateIntro">>
 
 :: intro-scene12c-text [nobr]
-<<timed 0.1s>>
-     <<type 60ms>>
-    <p> ENVELOPE: MADAME DE TENCIN </p>
-    <</type>>
-<</timed>>
+
 
 <<timed 2s>>
      <<include "sealButton">>
@@ -921,7 +919,7 @@ setup.addPlaceholder = () => {
 
 
 :: scene12 [nobr]
-<<set $prevpass to "intro-scene12b">>
+<<set $prevpass to "intro-scene12c">>
 <<set $pass to "scene12">>
 <<set $nextpass to "intro-scene13">>
 <<audio ":all" "stop">>
@@ -1043,7 +1041,7 @@ setup.addPlaceholder = () => {
 
 
 :: scene13-seal[nobr]
-<<set $prevpass to "scene3">>
+<<set $prevpass to "intro-scene13">>
 <<set $pass to "scene13-seal">>
 <<set $nextpass to "scene13">>
 <<audio ":all" "stop">>
